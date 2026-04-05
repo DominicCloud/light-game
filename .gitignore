@@ -14,3 +14,4 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+addons/ziva_agent/bin/windows_x86_64/~libziva_agent.windows.release.x86_64.dll
