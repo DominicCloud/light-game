@@ -19,6 +19,13 @@ config/icon="res://icon.svg"
 
 import/blender/enabled=false
 
+[layer_names]
+
+3d_physics/layer_1="???"
+3d_physics/layer_2="Umbrella"
+3d_physics/layer_3="Collide + Shade"
+3d_physics/layer_4="Just Shade"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

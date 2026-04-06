@@ -16,7 +16,9 @@ extends Node
 @export var ray_start_height: float = 50.0
 ## Collision mask layers that can BLOCK the sun (umbrella + environment).
 ## Set this to match your umbrella and environment physics layers.
-@export_flags_3d_physics var blocking_layers: int = 1
+@export_flags_3d_physics var umbrella_layer: int = 2
+@export_flags_3d_physics var environment_layer: int = 1
+@export_flags_3d_physics var canopy_layer: int = 8
 ## Extra sample points around the kid for partial shade detection.
 ## 0 = single centre ray only. Higher = more accurate but more expensive.
 @export_range(0, 8) var sample_count: int = 4
@@ -98,7 +100,8 @@ func _is_point_exposed(point: Vector3) -> bool:
 	var ray_target := point  # straight down to the sample point
 
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_target)
-	query.collision_mask = blocking_layers
+	var all_blocking := umbrella_layer | environment_layer | canopy_layer
+	query.collision_mask = all_blocking
 	# Exclude the kid's own collider so it doesn't block its own rays.
 	if kid is CollisionObject3D:
 		query.exclude = [kid.get_rid()]

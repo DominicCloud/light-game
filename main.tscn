@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://8ejpylc1yvip"]
 
 [ext_resource type="PackedScene" uid="uid://cbtlijq6waagg" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_01.fbx" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://dkee5j22br473" path="res://scripts/sunexposuredetector.gd" id="2_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b8dff15ymd32s" path="res://modelAssets/StreetProps/FBX/BusStop.fbx" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://dtiredirj4h52" path="res://modelAssets/StreetProps/FBX/TrashCan_02.fbx" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://505oqx6b4rba" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_02.fbx" id="5_kek77"]
@@ -12,6 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://bxp0qfwmw22ai" path="res://modelAssets/umbrellawanim.glb" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ddfvv7myjl4sh" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_01.fbx" id="11_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dfxlklnjylvdj" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_02.fbx" id="12_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://b1vy0esiqx7uj" path="res://modelAssets/EnvironomentPackV_2/FBX/BushBlueFlowers.fbx" id="13_cegan"]
+[ext_resource type="PackedScene" uid="uid://br4ybmy32584c" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_03.fbx" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://cyd4qte2nvd1x" path="res://modelAssets/EnvironomentPackV_2/FBX/Flower_03.fbx" id="14_82xsv"]
+[ext_resource type="PackedScene" uid="uid://bmhykqxuhgjn5" path="res://modelAssets/EnvironomentPackV_2/FBX/Flower_04.fbx" id="15_getpj"]
+[ext_resource type="PackedScene" uid="uid://vo31w60us0gn" path="res://modelAssets/EnvironomentPackV_2/FBX/Flower_05.fbx" id="16_ryguw"]
+[ext_resource type="PackedScene" uid="uid://bpmpak7jl1f4b" path="res://modelAssets/EnvironomentPackV_2/FBX/Flower_02.fbx" id="17_d13ii"]
+[ext_resource type="PackedScene" uid="uid://ep31uqwpnvis" path="res://modelAssets/EnvironomentPackV_2/FBX/Bush_01.fbx" id="18_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://bn3021qflbgub" path="res://modelAssets/Walking (1).fbx" id="19_0odxb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -28,21 +35,41 @@ sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dg77c"]
+height = 2.385254
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ycdy4"]
+radius = 0.6120492
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
+size = Vector3(1, 0.6485596, 0.051513672)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycdy4"]
+size = Vector3(1.0216064, 1, 0.67974854)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w48qg"]
+height = 1.3781738
+radius = 0.58496094
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w48qg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vivmo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lswn8"]
+albedo_color = Color(0.3254902, 0.6039216, 0.16862746, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_w48qg"]
+material = SubResource("StandardMaterial3D_lswn8")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6jrf"]
 
 [node name="Main" type="Node3D" unique_id=192753502]
 
 [node name="umbrellawanim" parent="." unique_id=1353634655 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.38992876, 0, 0, 0, 0.38992876, 0, 0, 0, 0.38992876, 2.1215458, 2.5388193, 0)
 
-[node name="CSGTempKid" type="CSGSphere3D" parent="." unique_id=397011854 node_paths=PackedStringArray("kid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.041222, 0.48314905, -1.3472223)
-use_collision = true
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("2_dg77c")
-kid = NodePath(".")
-sample_count = 8
+[node name="canopy" parent="umbrellawanim" index="2" unique_id=796905183]
+blend_shapes/Animation = 1.0
 
 [node name="LevelDesign" type="Node3D" parent="." unique_id=34206827]
 
@@ -54,20 +81,67 @@ transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-0
 light_color = Color(1, 0.5411765, 0.34117648, 1)
 shadow_enabled = true
 
-[node name="Tree_Green_01" parent="LevelDesign" unique_id=1049906966 instance=ExtResource("1_ig7tw")]
+[node name="Tree_Green_01" parent="LevelDesign" unique_id=1101840260 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4133148, 0.04055223, -3.1945364)
 
+[node name="TrunkCollider" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=1461738653]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/TrunkCollider" unique_id=1265936798]
+transform = Transform3D(1.3977373, 0, 0, 0, 3.5744913, 0, 0, 0, 1.1997854, 0, 2.9839866, 0)
+shape = SubResource("CapsuleShape3D_dg77c")
+
+[node name="CanopyCollider" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=29315156]
+collision_layer = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/CanopyCollider" unique_id=1368249152]
+transform = Transform3D(7.625895, 0, 0, 0, 1, 0, 0, 0, 7.40372, 0, 10.204459, 0)
+shape = SubResource("SphereShape3D_ycdy4")
+
 [node name="BusStop" parent="LevelDesign" unique_id=1624446041 instance=ExtResource("3_272bh")]
-transform = Transform3D(-0.1395055, 0, -1.2195959e-08, 0, 0.1395055, 0, 1.2195959e-08, 0, -0.1395055, 17.755615, 2.5786529, -1.8795588)
+transform = Transform3D(-0.1395055, 0, -1.2195959e-08, 0, 0.1395055, 0, 1.2195959e-08, 0, -0.1395055, 16.37409, 2.5786529, 3.5384858)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/BusStop" unique_id=765905848]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/BusStop/StaticBody3D" unique_id=1450730394]
+transform = Transform3D(36.68623, 0, 6.298251e-11, 0, 36.68623, 0, -6.298251e-11, 0, 36.68623, 0, -6.446512, -5.987486)
+shape = SubResource("BoxShape3D_dg77c")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="LevelDesign/BusStop/StaticBody3D" unique_id=1265552647]
+transform = Transform3D(36.83714, 0, 1.6380228e-10, 0, 4.794999, 0, -6.324159e-11, 0, 95.41201, 2.4996461e-07, -13.726363, -3.2252393)
+shape = SubResource("BoxShape3D_dg77c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/BusStop/StaticBody3D" unique_id=1263086152]
+transform = Transform3D(37.356266, -9.5773885e-08, 2.2472068e-07, 1.4529523e-06, 2.2052805, -10.952082, 3.4101322e-07, 1.0955259, 22.0464, 0.40355682, 3.8323555, 10.114594)
+shape = SubResource("BoxShape3D_ycdy4")
+debug_fill = false
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="LevelDesign/BusStop/StaticBody3D" unique_id=728342934]
+transform = Transform3D(37.356266, -1.7244493e-14, 4.8568674e-13, 0, 2.4252932, 2.6727772, -2.2737368e-13, -0.42589915, 15.220208, 0.40355682, 7.2346992, -1.0927181)
+shape = SubResource("BoxShape3D_ycdy4")
+debug_fill = false
 
 [node name="TrashCan_02" parent="LevelDesign" unique_id=1040505124 instance=ExtResource("4_5vw27")]
-transform = Transform3D(0.34309176, 0, 0, 0, 0.34309176, 0, 0, 0, 0.34309176, 16.088312, 0.6816919, -3.5477343)
+transform = Transform3D(0.34309176, 0, 0, 0, 0.34309176, 0, 0, 0, 0.34309176, 14.706787, 0.6816919, 1.8703103)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/TrashCan_02" unique_id=551967128]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/TrashCan_02/StaticBody3D" unique_id=1518820208]
+transform = Transform3D(2.6476378, 0, 0, 0, 2.6476378, 0, 0, 0, 2.6476378, 0, -0.42597473, 0)
+shape = SubResource("CylinderShape3D_w48qg")
+
+[node name="TrashCan_03" parent="LevelDesign/TrashCan_02" unique_id=965375323 instance=ExtResource("4_5vw27")]
+transform = Transform3D(0.98062974, 0, 0, 0, 0.98062974, 0, 0, 0, 0.98062974, 5.171419, 0.68169177, 97.6243)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/TrashCan_02/TrashCan_03" unique_id=202021910]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/TrashCan_02/TrashCan_03/StaticBody3D" unique_id=1696282138]
+transform = Transform3D(2.6476378, 0, 0, 0, 2.6476378, 0, 0, 0, 2.6476378, 0, -0.028764725, 0)
+shape = SubResource("CylinderShape3D_w48qg")
 
 [node name="Tree_Green_02" parent="LevelDesign" unique_id=1665182946 instance=ExtResource("5_kek77")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.299307, -0.63085324, 14.101185)
-
-[node name="Tree_Green_03" parent="LevelDesign" unique_id=1426031404 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8397045, 0.040553182, 29.87434)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.295946, -0.63085324, 18.777012)
 
 [node name="WizardTree" parent="LevelDesign" unique_id=1832970522 instance=ExtResource("6_4c57u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 52.346603)
@@ -75,8 +149,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 52.34
 [node name="Bench_02" parent="LevelDesign" unique_id=1708215277 instance=ExtResource("7_efxa6")]
 transform = Transform3D(-4.508807e-09, 0, 0.103149496, 0, 0.103149496, 0, -0.103149496, 0, -4.508807e-09, 1.0690346, 0.43997043, 8.737121)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Bench_02" unique_id=1687726603]
+collision_layer = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Bench_02/StaticBody3D" unique_id=2059595160]
+transform = Transform3D(17.587458, 0, 0, 0, 5.05927, 0, 0, 0, 8.660423, 0, -2.2533545, 0)
+shape = SubResource("BoxShape3D_w48qg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Bench_02/StaticBody3D" unique_id=466987487]
+transform = Transform3D(17.587456, 0, 0, 0, 7.28293, 0.20268908, 0, -1.0428699, 1.4154887, 0, 2.8412876, -3.5564404)
+shape = SubResource("BoxShape3D_w48qg")
+
 [node name="PhoneBooth_02" parent="LevelDesign" unique_id=1076737936 instance=ExtResource("8_kek77")]
 transform = Transform3D(-7.3881514e-09, 0, 0.1690212, 0, 0.1690212, 0, -0.1690212, 0, -7.3881514e-09, 0.65717125, 1.378306, 6.9471107)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/PhoneBooth_02" unique_id=825558722]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/PhoneBooth_02/StaticBody3D" unique_id=1998052935]
+transform = Transform3D(4.575816, 0, 1.4210855e-14, 0, 12.451028, 0, -7.1054274e-14, 0, 2.6413, 0, -1.5701628, -0.16447401)
+shape = SubResource("BoxShape3D_vivmo")
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="LevelDesign" unique_id=893033536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.25477836, 9.251544, -4.7683716e-07, 57.526188)
@@ -86,7 +178,7 @@ polygon = PackedVector2Array(0, 0, 0.16478539, 0.9024625, 0.8081894, 0.9079927, 
 transform = Transform3D(-3.5975292, 0, -3.14506e-07, 0, 3.5975292, 0, 3.14506e-07, 0, -3.5975292, 17.894047, 0.04055119, 30.495815)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign" unique_id=499142959]
-transform = Transform3D(18.997929, 0, 0, 0, 0.08110322, 0, 0, 0, 63.15714, 9.720443, 0, 26.710424)
+transform = Transform3D(18.997673, 0, 0, 0, 0.081102125, 0, 0, 0, 63.15629, 9.720443, 0, 26.710424)
 mesh = SubResource("BoxMesh_w48qg")
 
 [node name="Trunk_01" parent="LevelDesign" unique_id=659136301 instance=ExtResource("11_dg77c")]
@@ -94,3 +186,44 @@ transform = Transform3D(0.25780743, 0, -0.9661963, 0, 1, 0, 0.9661963, 0, 0.2578
 
 [node name="Trunk_02" parent="LevelDesign" unique_id=1070339728 instance=ExtResource("12_ycdy4")]
 transform = Transform3D(0.9782527, 0, -0.20741658, 0, 1, 0, 0.20741658, 0, 0.9782527, 2.6777105, 0.052083194, 39.355206)
+
+[node name="Tree_Green_03" parent="." unique_id=671729381 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86723757, 9.536743e-07, 34.1992)
+
+[node name="BushBlueFlowers" parent="." unique_id=365197017 instance=ExtResource("13_cegan")]
+transform = Transform3D(0.2055702, 0, 0, 0, 0.1737817, 0, 0, 0, 0.17418166, 12.790546, 0.3060192, 4.013502)
+
+[node name="Flower_03" parent="." unique_id=1585571437 instance=ExtResource("14_82xsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.343583, 0, -4.0562425)
+
+[node name="Flower_04" parent="." unique_id=1965995155 instance=ExtResource("15_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513291, 0.4178189, -2.5924125)
+
+[node name="Flower_05" parent="." unique_id=997966826 instance=ExtResource("16_ryguw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5288258, 0, 18.814411)
+
+[node name="Flower_02" parent="." unique_id=879209410 instance=ExtResource("17_d13ii")]
+transform = Transform3D(1, 0, 0, 0, 0.66465795, 0, 0, 0, 1, 1.3457608, 0.35692835, 10.051989)
+
+[node name="Bush_01" parent="." unique_id=1787935338 instance=ExtResource("18_1u8w0")]
+transform = Transform3D(0.21646537, 0, 0, 0, 0.21646537, 0, 0, 0, 0.21646537, 18.597296, 0.3614924, 56.99828)
+
+[node name="Walking (1)" parent="." unique_id=84242296 instance=ExtResource("19_0odxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.084073, -1.1920929e-07, -0.44993854)
+
+[node name="Skeleton3D" parent="Walking (1)" index="0" unique_id=425195140]
+bones/12/rotation = Quaternion(-2.8406097e-17, 3.469447e-18, 3.84255e-33, 1)
+bones/16/rotation = Quaternion(0.24343243, -0.03460498, 0.008691127, 0.9692614)
+bones/17/rotation = Quaternion(0.0009453397, -1.6659651e-05, -0.017618783, 0.9998444)
+bones/21/rotation = Quaternion(-1.92593e-33, -2.4074124e-33, -3.469447e-17, 1)
+bones/24/rotation = Quaternion(0.0152735, -0.00012443184, -0.00814569, 0.9998502)
+bones/31/rotation = Quaternion(0.24836175, 0.013545351, -0.0034733256, 0.9685665)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Walking (1)" unique_id=1359584169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Walking (1)/RigidBody3D" unique_id=484861750]
+transform = Transform3D(0.63395286, 0, 0, 0, 0.63395286, 0, 0, 0, 0.63395286, 0, 0.71292484, 0)
+shape = SubResource("CapsuleShape3D_a6jrf")
+
+[editable path="umbrellawanim"]
+[editable path="Walking (1)"]
