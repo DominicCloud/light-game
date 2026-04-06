@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://d044648bhnwrx"]
+
+[ext_resource type="Script" uid="uid://bpl3m8uvh4wqe" path="res://scripts/player_character.gd" id="1_0biqy"]
+[ext_resource type="Script" uid="uid://c1dvxx2ifwl1i" path="res://scripts/camera_3d.gd" id="2_47u71"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0x2k"]
+size = Vector3(30, 1, 30)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0biqy"]
+data = PackedVector3Array(-15, 0.5, 15, 15, 0.5, 15, -15, -0.5, 15, 15, 0.5, 15, 15, -0.5, 15, -15, -0.5, 15, 15, 0.5, -15, -15, 0.5, -15, 15, -0.5, -15, -15, 0.5, -15, -15, -0.5, -15, 15, -0.5, -15, 15, 0.5, 15, 15, 0.5, -15, 15, -0.5, 15, 15, 0.5, -15, 15, -0.5, -15, 15, -0.5, 15, -15, 0.5, -15, -15, 0.5, 15, -15, -0.5, -15, -15, 0.5, 15, -15, -0.5, 15, -15, -0.5, -15, 15, 0.5, 15, -15, 0.5, 15, 15, 0.5, -15, -15, 0.5, 15, -15, 0.5, -15, 15, 0.5, -15, -15, -0.5, 15, 15, -0.5, 15, -15, -0.5, -15, 15, -0.5, 15, 15, -0.5, -15, -15, -0.5, -15)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_47u71"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ywgp6"]
+
+[node name="GameWorld" type="Node3D" unique_id=1919944614]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1935634584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5703745, 12.167822, -7.9360447)
+shadow_enabled = true
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1182469731]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=2090951475]
+mesh = SubResource("BoxMesh_e0x2k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=256602779]
+shape = SubResource("ConcavePolygonShape3D_0biqy")
+
+[node name="PlayerCharacter" type="CharacterBody3D" parent="." unique_id=1729248667]
+script = ExtResource("1_0biqy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerCharacter" unique_id=142211903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.272663, 0)
+mesh = SubResource("CapsuleMesh_47u71")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PlayerCharacter" unique_id=424837519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.2499027, 0)
+shape = SubResource("CapsuleShape3D_ywgp6")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1522317311 node_paths=PackedStringArray("player")]
+transform = Transform3D(0.84524316, 0.12890764, -0.5186008, 0, 0.9704686, 0.24122752, 0.5343818, -0.20389591, 0.8202819, -6.7820005, 9.665286, 8.144659)
+script = ExtResource("2_47u71")
+player = NodePath("../PlayerCharacter")

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d044648bhnwrx"]
+
+[ext_resource type="PackedScene" uid="uid://nv0lw4te1dlv" path="res://scenes/umbrella.tscn" id="1_47u71"]
+[ext_resource type="Script" uid="uid://c1dvxx2ifwl1i" path="res://scripts/camera_3d.gd" id="2_47u71"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47u71"]
+albedo_color = Color(1, 0.49411765, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e0x2k"]
+size = Vector3(100, 1, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_47u71"]
+data = PackedVector3Array(-50, 0.5, 25, 50, 0.5, 25, -50, -0.5, 25, 50, 0.5, 25, 50, -0.5, 25, -50, -0.5, 25, 50, 0.5, -25, -50, 0.5, -25, 50, -0.5, -25, -50, 0.5, -25, -50, -0.5, -25, 50, -0.5, -25, 50, 0.5, 25, 50, 0.5, -25, 50, -0.5, 25, 50, 0.5, -25, 50, -0.5, -25, 50, -0.5, 25, -50, 0.5, -25, -50, 0.5, 25, -50, -0.5, -25, -50, 0.5, 25, -50, -0.5, 25, -50, -0.5, -25, 50, 0.5, 25, -50, 0.5, 25, 50, 0.5, -25, -50, 0.5, 25, -50, 0.5, -25, 50, 0.5, -25, -50, -0.5, 25, 50, -0.5, 25, -50, -0.5, -25, 50, -0.5, 25, 50, -0.5, -25, -50, -0.5, -25)
+
+[node name="GameWorld" type="Node3D" unique_id=1919944614]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1182469731]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=2090951475]
+material_override = SubResource("StandardMaterial3D_47u71")
+mesh = SubResource("BoxMesh_e0x2k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1469117376]
+shape = SubResource("ConcavePolygonShape3D_47u71")
+debug_color = Color(0.8967921, 0.29102513, 0.33556786, 0.41960785)
+
+[node name="Umbrella" parent="." unique_id=1052491322 instance=ExtResource("1_47u71")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1522317311 node_paths=PackedStringArray("player")]
+transform = Transform3D(0.84524316, 0.12890764, -0.5186008, 0, 0.9704686, 0.24122752, 0.5343818, -0.20389591, 0.8202819, -6.7820005, 9.665286, 8.144659)
+script = ExtResource("2_47u71")
+player = NodePath("")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1964551817]
+transform = Transform3D(1, 0, 0, 0, -0.6241524, 0.78130263, 0, -0.78130263, -0.6241524, 0, 22.564934, 0)
+shadow_enabled = true
