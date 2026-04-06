@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8ejpylc1yvip"]
 
 [ext_resource type="PackedScene" uid="uid://cbtlijq6waagg" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_01.fbx" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://bs3qth4fq0k4w" path="res://UmbrellaPlayerController.gd" id="2_aq1jp"]
+[ext_resource type="Script" uid="uid://dkee5j22br473" path="res://scripts/sunexposuredetector.gd" id="2_dg77c"]
 [ext_resource type="PackedScene" uid="uid://b8dff15ymd32s" path="res://modelAssets/StreetProps/FBX/BusStop.fbx" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://dtiredirj4h52" path="res://modelAssets/StreetProps/FBX/TrashCan_02.fbx" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://505oqx6b4rba" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_02.fbx" id="5_kek77"]
@@ -32,18 +32,17 @@ glow_enabled = true
 
 [node name="Main" type="Node3D" unique_id=192753502]
 
-[node name="CSGTempKid" type="CSGSphere3D" parent="." unique_id=397011854]
+[node name="umbrellawanim" parent="." unique_id=1353634655 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.38992876, 0, 0, 0, 0.38992876, 0, 0, 0, 0.38992876, 2.1215458, 2.5388193, 0)
+
+[node name="CSGTempKid" type="CSGSphere3D" parent="." unique_id=397011854 node_paths=PackedStringArray("kid")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.041222, 0.48314905, -1.3472223)
 use_collision = true
-
-[node name="UmbrellaPlayer" type="Node3D" parent="." unique_id=956743002]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2307334, 1.1409106, -1.830114)
-script = ExtResource("2_aq1jp")
-
-[node name="Camera3D" type="Camera3D" parent="UmbrellaPlayer" unique_id=763575870]
-
-[node name="umbrellawanim" parent="UmbrellaPlayer" unique_id=1353634655 instance=ExtResource("10_4c57u")]
-transform = Transform3D(0.37446135, 0, 0, 0, 0.40872812, 0, 0, 0, 0.3198562, 1.2446885, 1.6116128, -0.10419822)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("2_dg77c")
+kid = NodePath(".")
+sample_count = 8
 
 [node name="LevelDesign" type="Node3D" parent="." unique_id=34206827]
 
@@ -51,7 +50,7 @@ transform = Transform3D(0.37446135, 0, 0, 0, 0.40872812, 0, 0, 0, 0.3198562, 1.2
 environment = SubResource("Environment_h2yge")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="LevelDesign" unique_id=1106104766]
-transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 3.3147776, 4.420767, 7.5003614)
 light_color = Color(1, 0.5411765, 0.34117648, 1)
 shadow_enabled = true
 
