@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://nv0lw4te1dlv" path="res://scenes/umbrella.tscn" id="1_47u71"]
 [ext_resource type="Script" uid="uid://c1dvxx2ifwl1i" path="res://scripts/camera_3d.gd" id="2_47u71"]
+[ext_resource type="Script" uid="uid://6g8kp5pey5ux" path="res://scripts/boy_path.gd" id="3_ywgp6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47u71"]
 albedo_color = Color(1, 0.49411765, 1, 1)
@@ -11,6 +12,22 @@ size = Vector3(100, 1, 50)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_47u71"]
 data = PackedVector3Array(-50, 0.5, 25, 50, 0.5, 25, -50, -0.5, 25, 50, 0.5, 25, 50, -0.5, 25, -50, -0.5, 25, 50, 0.5, -25, -50, 0.5, -25, 50, -0.5, -25, -50, 0.5, -25, -50, -0.5, -25, 50, -0.5, -25, 50, 0.5, 25, 50, 0.5, -25, 50, -0.5, 25, 50, 0.5, -25, 50, -0.5, -25, 50, -0.5, 25, -50, 0.5, -25, -50, 0.5, 25, -50, -0.5, -25, -50, 0.5, 25, -50, -0.5, 25, -50, -0.5, -25, 50, 0.5, 25, -50, 0.5, 25, 50, 0.5, -25, -50, 0.5, 25, -50, 0.5, -25, 50, 0.5, -25, -50, -0.5, 25, 50, -0.5, 25, -50, -0.5, -25, 50, -0.5, 25, 50, -0.5, -25, -50, -0.5, -25)
+
+[sub_resource type="Curve3D" id="Curve3D_47u71"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.808379, -4.03817, -3.8418264, 0, 0, 0, 0, 0, 0, -7.1501317, -6.6053324, -2.523203, 0, 0, 0, 0, 0, 0, -1.1933088, -10.89307, 0.35184383, 0, 0, 0, 0, 0, 0, 15.830931, -9.098781, 12.212084, 0, 0, 0, 0, 0, 0, 42.14288, -12.743142, 2.1018877, 0, 0, 0, 0, 0, 0, 35.354523, -11.664539, -10.865045, 0, 0, 0, 0, 0, 0, 26.564905, -12.253847, -0.21072888, 0, 0, 0, 0, 0, 0, 26.117191, -1.395855, -18.020493),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 2.549515, 0)
+}
+point_count = 8
+
+[sub_resource type="Curve3D" id="Curve3D_ywgp6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -28.647533, 0, -20.160076, 0, 0, 0, 0, 0, 0, -11.3962345, 0, -21.547115, 0, 0, 0, 0, 0, 0, 4.814781, 0, -15.218751, 0, 0, 0, 0, 0, 0, -12.089754, 0, -10.7975645, 0, 0, 0, 0, 0, 0, -25.613384, 0, -14.178471, 0, 0, 0, 0, 0, 0, -32.859478, 0, -10.23876, 0, 0, 0, 0, 0, 0, -23.06351, 0, -1.3963863, 0, 0, 0, 0, 0, 0, -19.509228, 0, 4.8452897, 0, 0, 0, 0, 0, 0, -33.292927, 0, 9.006406, 0, 0, 0, 0, 0, 0, -42.742134, 0, 0.94424254, 0, 0, 0, 0, 0, 0, -44.82269, 0, -10.49883, 0, 0, 0, 0, 0, 0, -39.01446, 0, -19.601274),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[sub_resource type="TorusMesh" id="TorusMesh_ywgp6"]
 
 [node name="GameWorld" type="Node3D" unique_id=1919944614]
 
@@ -29,8 +46,23 @@ debug_color = Color(0.8967921, 0.29102513, 0.33556786, 0.41960785)
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1522317311 node_paths=PackedStringArray("player")]
 transform = Transform3D(0.84524316, 0.12890764, -0.5186008, 0, 0.9704686, 0.24122752, 0.5343818, -0.20389591, 0.8202819, -6.7820005, 9.665286, 8.144659)
 script = ExtResource("2_47u71")
-player = NodePath("")
+player = NodePath("../Umbrella")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1964551817]
 transform = Transform3D(1, 0, 0, 0, -0.6241524, 0.78130263, 0, -0.78130263, -0.6241524, 0, 22.564934, 0)
 shadow_enabled = true
+
+[node name="Path3D" type="Path3D" parent="." unique_id=137794202]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.202997, 0)
+curve = SubResource("Curve3D_47u71")
+
+[node name="Path3D2" type="Path3D" parent="." unique_id=1953099549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6511946, 0)
+curve = SubResource("Curve3D_ywgp6")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2" unique_id=1255417579]
+transform = Transform3D(-0.22696279, 0.39361823, -0.8908157, -4.4703484e-08, 0.91468585, 0.40416557, 0.9739034, 0.09173058, -0.20759964, 0, 0, 0)
+script = ExtResource("3_ywgp6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Path3D2/PathFollow3D" unique_id=2100611356]
+mesh = SubResource("TorusMesh_ywgp6")
