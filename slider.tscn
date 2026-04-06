@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cw2et1k385j7t"]
+
+[ext_resource type="Texture2D" uid="uid://cpnwxvcq3ctd6" path="res://modelAssets/rsz_1sun-removebg-preview.png" id="1_7wwkj"]
+[ext_resource type="Texture2D" uid="uid://cmudbdojemu1b" path="res://modelAssets/color-removebg-preview.png" id="2_yiagy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmgt1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_la53y"]
+texture = ExtResource("2_yiagy")
+expand_margin_top = 22.0
+expand_margin_right = 16.0
+expand_margin_bottom = 15.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Node2D" type="Node2D" unique_id=1133075964]
+
+[node name="HSlider" type="HSlider" parent="." unique_id=169745860]
+material = SubResource("ShaderMaterial_cmgt1")
+offset_top = 1.0
+offset_right = 252.0
+offset_bottom = 434.0
+scale = Vector2(0.9987298, 1)
+pivot_offset = Vector2(250, 164)
+theme_override_icons/grabber = ExtResource("1_7wwkj")
+theme_override_styles/slider = SubResource("StyleBoxTexture_la53y")
