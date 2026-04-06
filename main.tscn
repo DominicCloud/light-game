@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://505oqx6b4rba" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_02.fbx" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://c4x5xwj6k1dv0" path="res://modelAssets/Environoment Pack V.1/FBX/WizardTree.fbx" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ddev36s3u1yxb" path="res://modelAssets/StreetProps/FBX/Bench_02.fbx" id="7_efxa6"]
+[ext_resource type="PackedScene" uid="uid://bshfu38cetgas" path="res://modelAssets/StreetProps/FBX/PhoneBooth_02.fbx" id="8_kek77"]
+[ext_resource type="PackedScene" uid="uid://b4470k8gi2w5i" path="res://modelAssets/DonutTruck/Low Poly Donut Truck.fbx" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://bxp0qfwmw22ai" path="res://modelAssets/umbrellawanim.glb" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ddfvv7myjl4sh" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_01.fbx" id="11_dg77c"]
+[ext_resource type="PackedScene" uid="uid://dfxlklnjylvdj" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_02.fbx" id="12_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -23,6 +28,8 @@ sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_w48qg"]
+
 [node name="Main" type="Node3D" unique_id=192753502]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1228615002]
@@ -32,11 +39,6 @@ environment = SubResource("Environment_h2yge")
 transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
 light_color = Color(1, 0.5411765, 0.34117648, 1)
 shadow_enabled = true
-
-[node name="CSGGroundPlane" type="CSGBox3D" parent="." unique_id=1418700442]
-transform = Transform3D(18.997929, 0, 0, 0, 0.08110322, 0, 0, 0, 29.67191, 9.720443, 0, 26.710424)
-use_collision = true
-size = Vector3(1, 1, 2.1265564)
 
 [node name="Tree_Green_01" parent="." unique_id=1049906966 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4133148, 0.04055223, -3.1945364)
@@ -49,16 +51,16 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2307334, 1.1409106, -1.830114)
 script = ExtResource("2_aq1jp")
 
-[node name="CSGUmbrella" type="CSGCylinder3D" parent="UmbrellaPlayer" unique_id=92871082]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7265012, 0, 0)
-
 [node name="Camera3D" type="Camera3D" parent="UmbrellaPlayer" unique_id=763575870]
 
+[node name="umbrellawanim" parent="UmbrellaPlayer" unique_id=1353634655 instance=ExtResource("10_4c57u")]
+transform = Transform3D(0.37446135, 0, 0, 0, 0.40872812, 0, 0, 0, 0.3198562, 1.2446885, 1.6116128, -0.10419822)
+
 [node name="BusStop" parent="." unique_id=1624446041 instance=ExtResource("3_272bh")]
-transform = Transform3D(-0.12297645, 0, -1.0750943e-08, 0, 0.12297645, 0, 1.0750943e-08, 0, -0.12297645, 16.651926, 2.3254771, -2.9698868)
+transform = Transform3D(-0.1395055, 0, -1.2195959e-08, 0, 0.1395055, 0, 1.2195959e-08, 0, -0.1395055, 17.755615, 2.5786529, -1.8795588)
 
 [node name="TrashCan_02" parent="." unique_id=1040505124 instance=ExtResource("4_5vw27")]
-transform = Transform3D(0.30244118, 0, 0, 0, 0.30244118, 0, 0, 0, 0.30244118, 15.18217, 0.65327406, -4.4404116)
+transform = Transform3D(0.34309176, 0, 0, 0, 0.34309176, 0, 0, 0, 0.34309176, 16.088312, 0.6816919, -3.5477343)
 
 [node name="Tree_Green_02" parent="." unique_id=1665182946 instance=ExtResource("5_kek77")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.299307, -0.63085324, 14.101185)
@@ -67,7 +69,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.299307, -0.63085324, 14.10
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8397045, 0.040553182, 29.87434)
 
 [node name="WizardTree" parent="." unique_id=1832970522 instance=ExtResource("6_4c57u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 54.22337)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 52.346603)
 
 [node name="Bench_02" parent="." unique_id=1708215277 instance=ExtResource("7_efxa6")]
-transform = Transform3D(-4.2958073e-09, 0, 0.09827662, 0, 0.09827662, 0, -0.09827662, 0, -4.2958073e-09, 1.9775531, 0.49834967, 5.838258)
+transform = Transform3D(-4.508807e-09, 0, 0.103149496, 0, 0.103149496, 0, -0.103149496, 0, -4.508807e-09, 1.0690346, 0.43997043, 8.737121)
+
+[node name="PhoneBooth_02" parent="." unique_id=1076737936 instance=ExtResource("8_kek77")]
+transform = Transform3D(-7.3881514e-09, 0, 0.1690212, 0, 0.1690212, 0, -0.1690212, 0, -7.3881514e-09, 0.65717125, 1.378306, 6.9471107)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="." unique_id=893033536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.25477836, 9.251544, -4.7683716e-07, 57.526188)
+polygon = PackedVector2Array(0, 0, 0.16478539, 0.9024625, 0.8081894, 0.9079927, 1, 0)
+
+[node name="Low Poly Donut Truck" parent="." unique_id=57520996 instance=ExtResource("9_4c57u")]
+transform = Transform3D(-3.5975292, 0, -3.14506e-07, 0, 3.5975292, 0, 3.14506e-07, 0, -3.5975292, 17.894047, 0.04055119, 30.495815)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=499142959]
+transform = Transform3D(18.997929, 0, 0, 0, 0.08110322, 0, 0, 0, 63.15714, 9.720443, 0, 26.710424)
+mesh = SubResource("BoxMesh_w48qg")
+
+[node name="Trunk_01" parent="." unique_id=659136301 instance=ExtResource("11_dg77c")]
+transform = Transform3D(0.25780743, 0, -0.9661963, 0, 1, 0, 0.9661963, 0, 0.25780743, 1.7873603, 0.43869615, 41.20787)
+
+[node name="Trunk_02" parent="." unique_id=1070339728 instance=ExtResource("12_ycdy4")]
+transform = Transform3D(0.9782527, 0, -0.20741658, 0, 1, 0, 0.20741658, 0, 0.9782527, 2.6777105, 0.052083194, 39.355206)
