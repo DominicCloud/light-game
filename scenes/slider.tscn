@@ -13,9 +13,7 @@ expand_margin_bottom = 15.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
-[node name="Node2D" type="Node2D" unique_id=1133075964]
-
-[node name="HSlider" type="HSlider" parent="." unique_id=169745860]
+[node name="HSlider" type="HSlider" unique_id=169745860]
 material = SubResource("ShaderMaterial_cmgt1")
 offset_top = 1.0
 offset_right = 252.0
@@ -24,3 +22,4 @@ scale = Vector2(0.9987298, 1)
 pivot_offset = Vector2(250, 164)
 theme_override_icons/grabber = ExtResource("1_7wwkj")
 theme_override_styles/slider = SubResource("StyleBoxTexture_la53y")
+value = 50.0

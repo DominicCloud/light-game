@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://cy05jpg3578c5"]
+
+[ext_resource type="Script" uid="uid://dvus5ubm4b4qn" path="res://scripts/menu.gd" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://chdomc00rvws6" path="res://assets/splashscreen.jpg" id="1_yqeox"]
+
+[sub_resource type="FontFile" id="FontFile_yqeox"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+
+[sub_resource type="Theme" id="Theme_vjb58"]
+default_font = SubResource("FontFile_yqeox")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_con2f"]
+bg_color = Color(0.9914363, 0.36975068, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3eks"]
+bg_color = Color(0.5879395, 0.52009594, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_bottom = 5
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjb58"]
+bg_color = Color(0.6461459, 0, 0.2267772, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Main menu" type="Control" unique_id=174319544]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjb58")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1274512182]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(97.21429, 52.254044)
+color = Color(0.8, 0.9607843, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=729926832]
+layout_mode = 0
+offset_right = 2732.0
+offset_bottom = 2048.0
+scale = Vector2(0.7049168, 0.581645)
+texture = ExtResource("1_yqeox")
+
+[node name="Button" type="Button" parent="." unique_id=897597270]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 616.0
+offset_right = 1099.0
+offset_bottom = 651.0
+scale = Vector2(7.5626965, 7.5626965)
+theme = SubResource("Theme_vjb58")
+theme_override_styles/normal = SubResource("StyleBoxFlat_con2f")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_g3eks")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vjb58")
+text = "START"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

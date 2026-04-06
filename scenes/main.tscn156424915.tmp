@@ -25,9 +25,7 @@
 [ext_resource type="Script" uid="uid://cr2w08ioj7jxy" path="res://scripts/ai_path_follow.gd" id="23_y6deb"]
 [ext_resource type="Script" uid="uid://dkee5j22br473" path="res://scripts/sunexposuredetector.gd" id="25_2wyq8"]
 [ext_resource type="Script" uid="uid://0pxlipro3apo" path="res://scripts/deadzone.gd" id="25_og1vs"]
-[ext_resource type="PackedScene" uid="uid://cw2et1k385j7t" path="res://scenes/slider.tscn" id="27_2f3dj"]
 [ext_resource type="Script" uid="uid://ion1ymxxj8dv" path="res://scripts/UI.gd" id="27_vxglm"]
-[ext_resource type="Texture2D" uid="uid://chdomc00rvws6" path="res://assets/splashscreen.jpg" id="28_2f3dj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -479,7 +477,6 @@ kid = NodePath("../AI_boy_path/PathFollow3D/Kid")
 follow_path = NodePath("../AI_boy_path/PathFollow3D")
 
 [node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=827705197]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -522,35 +519,6 @@ visible = false
 layout_mode = 2
 text = "Thanks for 
   playing!"
-
-[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1471333709]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -192.0
-offset_right = 192.0
-offset_bottom = 60.0
-grow_horizontal = 2
-
-[node name="healthbar" parent="Control/MarginContainer" unique_id=1133075964 instance=ExtResource("27_2f3dj")]
-layout_mode = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=385919709]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(97.21429, 52.254044)
-color = Color(0.8, 0.9607843, 1, 1)
-
-[node name="TextureRect" type="TextureRect" parent="Control" unique_id=2109598166]
-visible = false
-layout_mode = 0
-offset_right = 2732.0
-offset_bottom = 2048.0
-scale = Vector2(0.57609266, 0.57609266)
-texture = ExtResource("28_2f3dj")
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 

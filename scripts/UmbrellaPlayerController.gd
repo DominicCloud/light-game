@@ -1,5 +1,4 @@
 extends Node3D
-class_name UmbrellaPlayerController
 
 signal shade_state_changed(is_open: bool)
 
