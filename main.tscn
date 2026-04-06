@@ -396,5 +396,56 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5613537, -9.536743e-07, 46.
 [node name="Rock_11" parent="." unique_id=1471503833 instance=ExtResource("32_f6a44")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.843767, 0, 39.168015)
 
+[node name="Rose2" parent="." unique_id=866431649 instance=ExtResource("24_h8e4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.018549, 0, 50.969975)
+
+[node name="Trunk_01" parent="." unique_id=620907712 instance=ExtResource("11_dg77c")]
+transform = Transform3D(0.80020833, 0, 0.59972215, 0, 1, 0, -0.59972215, 0, 0.80020833, 14.076963, 0, 54.37612)
+
+[node name="Trunk_04" parent="." unique_id=677613040 instance=ExtResource("12_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.263367, 0, 52.8409)
+
+[node name="Grass20" parent="." unique_id=2091085087 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.209227, 0, 50.42279)
+
+[node name="Grass21" parent="." unique_id=2111632312 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.003115, 0, 51.921856)
+
+[node name="Grass22" parent="." unique_id=875134252 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.077671, 0, 53.235115)
+
+[node name="Bell_flower3" parent="." unique_id=2047122927 instance=ExtResource("23_come4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.442669, 0, 52.434055)
+
+[node name="Anthurium5" parent="." unique_id=1648884108 instance=ExtResource("28_gngh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.455019, 0, 35.96556)
+
+[node name="Anthurium6" parent="." unique_id=1189765980 instance=ExtResource("28_gngh3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6173038, 0, 48.094353)
+
+[node name="Grass23" parent="." unique_id=1206319287 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2012644, 0, 55.81179)
+
+[node name="Grass24" parent="." unique_id=963819144 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.724485, 0, 52.45642)
+
+[node name="Grass25" parent="." unique_id=1339671296 instance=ExtResource("31_wnkbs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7571964, 0, 50.742123)
+
+[node name="Daisy4" parent="." unique_id=1821679156 instance=ExtResource("27_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.430547, 0, 57.003418)
+
+[node name="Plant3" parent="." unique_id=1659993765 instance=ExtResource("22_b1qrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9796286, 0, 56.56134)
+
+[node name="Rock_12" parent="." unique_id=1543859611 instance=ExtResource("35_uypp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2065516, 0, 54.654358)
+
+[node name="Rock_13" parent="." unique_id=1457475058 instance=ExtResource("26_0cp0l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0749784, 0, 56.856586)
+
+[node name="Daisy5" parent="." unique_id=1574229905 instance=ExtResource("27_d2t1y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.786932, 0, 37.550438)
+
 [editable path="umbrellawanim"]
 [editable path="Walking (1)"]
