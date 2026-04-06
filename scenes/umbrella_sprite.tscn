@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://cisit82codlfy"]
+
+[ext_resource type="PackedScene" uid="uid://bxp0qfwmw22ai" path="res://modelAssets/umbrellawanim.glb" id="1_wh0cu"]
+[ext_resource type="Script" uid="uid://sx3mdv5u3ydu" path="res://scripts/umbrella_sprite.gd" id="2_1tgt6"]
+
+[sub_resource type="Animation" id="Animation_c2upf"]
+resource_name = "Cylinder_001Action"
+length = 2.8333333
+tracks/0/type = "blend_shape"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("canopy:Animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 0.041666668, 1, 0.99772805, 0.083333336, 1, 0.9910837, 0.125, 1, 0.9803241, 0.16666667, 1, 0.96570647, 0.20833333, 1, 0.94748795, 0.25, 1, 0.9259259, 0.29166666, 1, 0.9012774, 0.33333334, 1, 0.8737997, 0.375, 1, 0.84375, 0.41666666, 1, 0.81138545, 0.45833334, 1, 0.7769633, 0.5, 1, 0.7407407, 0.5416667, 1, 0.70297503, 0.5833333, 1, 0.6639232, 0.625, 1, 0.6238426, 0.6666667, 1, 0.5829904, 0.8333333, 1, 0.4170096, 0.875, 1, 0.37615746, 0.9166667, 1, 0.33607677, 0.9583333, 1, 0.29702508, 1, 1, 0.25925916, 1.0416666, 1, 0.22303677, 1.0833334, 1, 0.1886146, 1.125, 1, 0.15625, 1.1666666, 1, 0.12620032, 1.2083334, 1, 0.09872246, 1.25, 1, 0.07407403, 1.2916666, 1, 0.05251193, 1.3333334, 1, 0.034293532, 1.375, 1, 0.01967585, 1.4166666, 1, 0.008916378, 1.4583334, 1, 0.0022718906, 1.5, 1, 0, 1.5416666, 1, 0.003485177, 1.5833334, 1, 0.013612691, 1.625, 1, 0.029890519, 1.6666666, 1, 0.05182663, 1.7083334, 1, 0.078929015, 1.75, 1, 0.11070564, 1.7916666, 1, 0.14666446, 1.8333334, 1, 0.18631351, 1.875, 1, 0.22916067, 1.9166666, 1, 0.274714, 1.9583334, 1, 0.32248145, 2, 1, 0.37197095, 2.0416667, 1, 0.42269057, 2.1666667, 1, 0.5773095, 2.2083333, 1, 0.62802905, 2.25, 1, 0.6775186, 2.2916667, 1, 0.72528595, 2.3333333, 1, 0.7708393, 2.375, 1, 0.81368655, 2.4166667, 1, 0.85333556, 2.4583333, 1, 0.88929445, 2.5, 1, 0.9210712, 2.5416667, 1, 0.9481733, 2.5833333, 1, 0.9701096, 2.625, 1, 0.9863874, 2.6666667, 1, 0.9965148, 2.7083333, 1, 1)
+
+[sub_resource type="Animation" id="Animation_m4dsw"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canopy:blend_shapes/Animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_deenl"]
+_data = {
+&"Cylinder_001Action": SubResource("Animation_c2upf"),
+&"RESET": SubResource("Animation_m4dsw")
+}
+
+[sub_resource type="Animation" id="Animation_gd8al"]
+length = 1.0333333
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canopy:blend_shapes/Animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.17222223, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.0333333)
+}
+
+[sub_resource type="Animation" id="Animation_wh0cu"]
+resource_name = "to_close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canopy:blend_shapes/Animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0009999999, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_1tgt6"]
+resource_name = "to_open"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("canopy:blend_shapes/Animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.15555501, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4dsw"]
+_data = {
+&"default": SubResource("Animation_gd8al"),
+&"to_close": SubResource("Animation_wh0cu"),
+&"to_open": SubResource("Animation_1tgt6")
+}
+
+[node name="Sprite" unique_id=1737840894 instance=ExtResource("1_wh0cu")]
+script = ExtResource("2_1tgt6")
+
+[node name="anim" type="AnimationPlayer" parent="." index="4" unique_id=1002462074]
+libraries/ = SubResource("AnimationLibrary_deenl")
+libraries/umbrella_anims = SubResource("AnimationLibrary_m4dsw")
+autoplay = &"umbrella_anims/default"

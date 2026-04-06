@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Tree_Green_01.fbx-cdac395b2702fb881bbc9ea6908
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

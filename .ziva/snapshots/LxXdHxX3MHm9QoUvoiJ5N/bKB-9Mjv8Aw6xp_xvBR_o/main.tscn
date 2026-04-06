@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://8ejpylc1yvip"]
+
+[ext_resource type="PackedScene" uid="uid://cbtlijq6waagg" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_01.fbx" id="1_ig7tw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
+sky_horizon_color = Color(0.94027936, 0.9173616, 0.8937397, 1)
+ground_bottom_color = Color(0.20009702, 0.28610915, 0.17217755, 1)
+ground_horizon_color = Color(0.94027936, 0.9173616, 0.8937397, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D" unique_id=192753502]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1228615002]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1106104766]
+transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+light_color = Color(1, 0.5411765, 0.34117648, 1)
+shadow_enabled = true
+
+[node name="CSGGroundPlane" type="CSGBox3D" parent="." unique_id=1418700442]
+transform = Transform3D(29.67191, 0, 0, 0, 0.08110322, 0, 0, 0, 29.67191, 0, 0, 0)
+use_collision = true
+
+[node name="Tree_Green_01" parent="." unique_id=1049906966 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4133148, 0.04055223, -3.1945364)
+
+[node name="CSGTempKid" type="CSGSphere3D" parent="." unique_id=397011854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.041222, 0.48314905, -1.79842)
+use_collision = true
+
+[node name="CSGUmbrella" type="CSGCylinder3D" parent="." unique_id=92871082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2307334, 1.1409106, -1.830114)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=763575870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97583485, 1.2078304, 9.536743e-07)

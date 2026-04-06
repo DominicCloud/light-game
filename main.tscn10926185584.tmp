@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://8ejpylc1yvip"]
+
+[ext_resource type="PackedScene" uid="uid://cbtlijq6waagg" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_01.fbx" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bs3qth4fq0k4w" path="res://UmbrellaPlayerController.gd" id="2_aq1jp"]
+[ext_resource type="PackedScene" uid="uid://b8dff15ymd32s" path="res://modelAssets/StreetProps/FBX/BusStop.fbx" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://dtiredirj4h52" path="res://modelAssets/StreetProps/FBX/TrashCan_02.fbx" id="4_5vw27"]
+[ext_resource type="PackedScene" uid="uid://505oqx6b4rba" path="res://modelAssets/Environoment Pack V.1/FBX/Tree_Green_02.fbx" id="5_kek77"]
+[ext_resource type="PackedScene" uid="uid://c4x5xwj6k1dv0" path="res://modelAssets/Environoment Pack V.1/FBX/WizardTree.fbx" id="6_4c57u"]
+[ext_resource type="PackedScene" uid="uid://ddev36s3u1yxb" path="res://modelAssets/StreetProps/FBX/Bench_02.fbx" id="7_efxa6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
+sky_horizon_color = Color(0.94027936, 0.9173616, 0.8937397, 1)
+ground_bottom_color = Color(0.20009702, 0.28610915, 0.17217755, 1)
+ground_horizon_color = Color(0.94027936, 0.9173616, 0.8937397, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D" unique_id=192753502]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1228615002]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1106104766]
+transform = Transform3D(-0.8660254, -0.50000006, -2.1855696e-08, 0, -4.371139e-08, 1, -0.50000006, 0.8660254, 3.7855173e-08, 0, 0, 0)
+light_color = Color(1, 0.5411765, 0.34117648, 1)
+shadow_enabled = true
+
+[node name="CSGGroundPlane" type="CSGBox3D" parent="." unique_id=1418700442]
+transform = Transform3D(18.997929, 0, 0, 0, 0.08110322, 0, 0, 0, 29.67191, 9.720443, 0, 26.710424)
+use_collision = true
+size = Vector3(1, 1, 2.1265564)
+
+[node name="Tree_Green_01" parent="." unique_id=1049906966 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4133148, 0.04055223, -3.1945364)
+
+[node name="CSGTempKid" type="CSGSphere3D" parent="." unique_id=397011854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.041222, 0.48314905, -1.3472223)
+use_collision = true
+
+[node name="UmbrellaPlayer" type="Node3D" parent="." unique_id=956743002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2307334, 1.1409106, -1.830114)
+script = ExtResource("2_aq1jp")
+
+[node name="CSGUmbrella" type="CSGCylinder3D" parent="UmbrellaPlayer" unique_id=92871082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7265012, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="UmbrellaPlayer" unique_id=763575870]
+
+[node name="BusStop" parent="." unique_id=1624446041 instance=ExtResource("3_272bh")]
+transform = Transform3D(-0.12297645, 0, -1.0750943e-08, 0, 0.12297645, 0, 1.0750943e-08, 0, -0.12297645, 16.651926, 2.3254771, -2.9698868)
+
+[node name="TrashCan_02" parent="." unique_id=1040505124 instance=ExtResource("4_5vw27")]
+transform = Transform3D(0.30244118, 0, 0, 0, 0.30244118, 0, 0, 0, 0.30244118, 15.18217, 0.65327406, -4.4404116)
+
+[node name="Tree_Green_02" parent="." unique_id=1665182946 instance=ExtResource("5_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.299307, -0.63085324, 14.101185)
+
+[node name="Tree_Green_03" parent="." unique_id=1426031404 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8397045, 0.040553182, 29.87434)
+
+[node name="WizardTree" parent="." unique_id=1832970522 instance=ExtResource("6_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 54.22337)
+
+[node name="Bench_02" parent="." unique_id=1708215277 instance=ExtResource("7_efxa6")]
+transform = Transform3D(-4.2958073e-09, 0, 0.09827662, 0, 0.09827662, 0, -0.09827662, 0, -4.2958073e-09, 1.9775531, 0.49834967, 5.838258)
