@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bpmpak7jl1f4b" path="res://modelAssets/EnvironomentPackV_2/FBX/Flower_02.fbx" id="17_d13ii"]
 [ext_resource type="PackedScene" uid="uid://ep31uqwpnvis" path="res://modelAssets/EnvironomentPackV_2/FBX/Bush_01.fbx" id="18_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://bn3021qflbgub" path="res://modelAssets/Walking (1).fbx" id="19_0odxb"]
+[ext_resource type="PackedScene" uid="uid://kmqknbgcx1xb" path="res://modelAssets/Environoment Pack V.1/FBX/Rose.fbx" id="20_82xsv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6jrf"]
 
@@ -312,10 +313,78 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513291, 0.4178189, -2.59241
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5288258, 0, 18.814411)
 
 [node name="Flower_02" parent="LevelDesign" unique_id=879209410 instance=ExtResource("17_d13ii")]
-transform = Transform3D(1, 0, 0, 0, 0.66465795, 0, 0, 0, 1, 1.3457608, 0.35692835, 10.051989)
+transform = Transform3D(1, 0, 0, 0, 0.66465795, 0, 0, 0, 1, 1.3457608, 0.35692835, 6.715043)
 
 [node name="Bush_01" parent="LevelDesign" unique_id=1787935338 instance=ExtResource("18_1u8w0")]
 transform = Transform3D(0.21646537, 0, 0, 0, 0.21646537, 0, 0, 0, 0.21646537, 18.597296, 0.3614924, 56.99828)
+
+[node name="RosePath" type="Node3D" parent="." unique_id=248038975]
+
+[node name="Rose" parent="RosePath" unique_id=1259631021 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.1107426, 0, -0.23641014)
+
+[node name="Rose2" parent="RosePath" unique_id=1016490377 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 10.347901, 0, -1.0608337)
+
+[node name="Rose3" parent="RosePath" unique_id=199601541 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15.488658, 0, 1.1867483)
+
+[node name="Rose4" parent="RosePath" unique_id=566585731 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 11.215689, 0, 4.4574966)
+
+[node name="Rose5" parent="RosePath" unique_id=1634300671 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 6.860424, 0, 6.9385366)
+
+[node name="Rose6" parent="RosePath" unique_id=83783340 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.8057094, 0, 10.127717)
+
+[node name="Rose7" parent="RosePath" unique_id=73504962 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.10986, 0, 15.170639)
+
+[node name="Rose8" parent="RosePath" unique_id=786528102 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 6.3094068, 0, 19.48839)
+
+[node name="Rose9" parent="RosePath" unique_id=331998331 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 9.56696, 0, 21.73941)
+
+[node name="Rose10" parent="RosePath" unique_id=562212849 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 13.039047, 0, 19.173594)
+
+[node name="Rose11" parent="RosePath" unique_id=680554042 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 9.965337, 0, 15.6993885)
+
+[node name="Rose12" parent="RosePath" unique_id=266333319 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 7.747261, 0, 17.301975)
+
+[node name="Rose13" parent="RosePath" unique_id=1321637195 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 7.7051306, 0, 24.787489)
+
+[node name="Rose14" parent="RosePath" unique_id=1786000970 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 14.170539, 0, 27.387272)
+
+[node name="Rose15" parent="RosePath" unique_id=104355288 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 15.709337, 0, 33.96409)
+
+[node name="Rose16" parent="RosePath" unique_id=1652024668 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 10.2673, 0, 36.755245)
+
+[node name="Rose17" parent="RosePath" unique_id=185052256 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.5777855, 0, 32.67204)
+
+[node name="Rose18" parent="RosePath" unique_id=231112233 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.0346532, 0, 37.86769)
+
+[node name="Rose19" parent="RosePath" unique_id=2078997850 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 1.4788585, 0, 44.76656)
+
+[node name="Rose20" parent="RosePath" unique_id=184654403 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 6.032638, 0, 47.374546)
+
+[node name="Rose21" parent="RosePath" unique_id=538621749 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 7.699147, 0, 54.258205)
+
+[node name="Rose22" parent="RosePath" unique_id=302422513 instance=ExtResource("20_82xsv")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 10.110864, 0, 56.64099)
 
 [editable path="Kid"]
 [editable path="LevelDesign/Tree_Green_01"]
