@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://ep31uqwpnvis" path="res://modelAssets/EnvironomentPackV_2/FBX/Bush_01.fbx" id="18_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://bn3021qflbgub" path="res://modelAssets/Walking (1).fbx" id="19_0odxb"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6jrf"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
 sky_horizon_color = Color(0.94027936, 0.9173616, 0.8937397, 1)
@@ -39,7 +41,18 @@ glow_enabled = true
 height = 2.385254
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ycdy4"]
-radius = 0.6120492
+radius = 0.6546392
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cegan"]
+radius = 0.5732422
+height = 2.0908203
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cegan"]
+height = 2.2641602
+radius = 0.5698242
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_82xsv"]
+height = 2.3012695
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dg77c"]
 size = Vector3(1, 0.6485596, 0.051513672)
@@ -55,21 +68,45 @@ radius = 0.58496094
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vivmo"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ryguw"]
+size = Vector3(0.8413086, 0.8409424, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d13ii"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1u8w0"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lswn8"]
 albedo_color = Color(0.3254902, 0.6039216, 0.16862746, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_w48qg"]
 material = SubResource("StandardMaterial3D_lswn8")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6jrf"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_82xsv"]
+size = Vector3(1.121582, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_getpj"]
 
 [node name="Main" type="Node3D" unique_id=192753502]
 
 [node name="umbrellawanim" parent="." unique_id=1353634655 instance=ExtResource("10_4c57u")]
 transform = Transform3D(0.38992876, 0, 0, 0, 0.38992876, 0, 0, 0, 0.38992876, 2.1215458, 2.5388193, 0)
 
-[node name="canopy" parent="umbrellawanim" index="2" unique_id=796905183]
-blend_shapes/Animation = 1.0
+[node name="Kid" parent="." unique_id=84242296 instance=ExtResource("19_0odxb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3699937, -1.1920929e-07, -0.44993854)
+
+[node name="Skeleton3D" parent="Kid" index="0" unique_id=425195140]
+bones/12/rotation = Quaternion(-2.8406097e-17, 3.469447e-18, 3.84255e-33, 1)
+bones/16/rotation = Quaternion(0.24343243, -0.03460498, 0.008691127, 0.9692614)
+bones/17/rotation = Quaternion(0.0009453397, -1.6659651e-05, -0.017618783, 0.9998444)
+bones/21/rotation = Quaternion(-1.92593e-33, -2.4074124e-33, -3.469447e-17, 1)
+bones/24/rotation = Quaternion(0.0152735, -0.00012443184, -0.00814569, 0.9998502)
+bones/31/rotation = Quaternion(0.24836175, 0.013545351, -0.0034733256, 0.9685665)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Kid" unique_id=1359584169]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kid/RigidBody3D" unique_id=484861750]
+transform = Transform3D(0.63395286, 0, 0, 0, 0.63395286, 0, 0, 0, 0.63395286, 0, 0.71292484, 0)
+shape = SubResource("CapsuleShape3D_a6jrf")
 
 [node name="LevelDesign" type="Node3D" parent="." unique_id=34206827]
 
@@ -84,18 +121,69 @@ shadow_enabled = true
 [node name="Tree_Green_01" parent="LevelDesign" unique_id=1101840260 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4133148, 0.04055223, -3.1945364)
 
-[node name="TrunkCollider" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=1461738653]
+[node name="TrunkStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=1461738653]
 collision_layer = 13
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/TrunkCollider" unique_id=1265936798]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/TrunkStatic" unique_id=1265936798]
 transform = Transform3D(1.3977373, 0, 0, 0, 3.5744913, 0, 0, 0, 1.1997854, 0, 2.9839866, 0)
 shape = SubResource("CapsuleShape3D_dg77c")
 
-[node name="CanopyCollider" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=29315156]
+[node name="CanopyStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_01" unique_id=29315156]
 collision_layer = 9
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/CanopyCollider" unique_id=1368249152]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_01/CanopyStatic" unique_id=1368249152]
 transform = Transform3D(7.625895, 0, 0, 0, 1, 0, 0, 0, 7.40372, 0, 10.204459, 0)
+shape = SubResource("SphereShape3D_ycdy4")
+
+[node name="Tree_Green_02" parent="LevelDesign" unique_id=1665182946 instance=ExtResource("5_kek77")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.296298, -0.63085324, 18.768934)
+
+[node name="TrunkStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_02" unique_id=1308091548]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_02/TrunkStatic" unique_id=1868135845]
+transform = Transform3D(1.4275638, 0.019620346, -7.882382e-05, -0.009868189, 2.8084855, -0.15262733, -0.0009787144, 0.3010335, 1.4239386, 0.006538391, 3.297061, 0.13212395)
+shape = SubResource("CapsuleShape3D_cegan")
+
+[node name="CanopyStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_02" unique_id=2034951184]
+collision_layer = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_02/CanopyStatic" unique_id=1411092585]
+transform = Transform3D(7.625895, 0, 0, 0, 1, 0, 0, 0, 8.700503, 0.19938996, 10.875866, -0.24659142)
+shape = SubResource("SphereShape3D_ycdy4")
+
+[node name="Tree_Green_03" parent="LevelDesign" unique_id=671729381 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86723804, 9.536743e-07, 34.1992)
+
+[node name="TrunkStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_03" unique_id=947478438]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_03/TrunkStatic" unique_id=2029504890]
+transform = Transform3D(1.5255127, 0.6178354, 0.029720394, -0.38961717, 2.4194734, 0.11293399, -0.000836253, -0.18227622, 1.599787, 0.745209, 3.1585712, -0.024074554)
+shape = SubResource("CylinderShape3D_cegan")
+
+[node name="CanopyStatic" type="StaticBody3D" parent="LevelDesign/Tree_Green_03" unique_id=936427586]
+collision_layer = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Tree_Green_03/CanopyStatic" unique_id=630914256]
+transform = Transform3D(7.625895, 0, 0, 0, 1, 0, 0, 0, 8.700503, 1.8091888, 10.245011, 0.47115704)
+shape = SubResource("SphereShape3D_ycdy4")
+
+[node name="WizardTree" parent="LevelDesign" unique_id=1832970522 instance=ExtResource("6_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 52.346603)
+
+[node name="TrunkStatic" type="StaticBody3D" parent="LevelDesign/WizardTree" unique_id=535250886]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/WizardTree/TrunkStatic" unique_id=2071670882]
+transform = Transform3D(1.8833783, 0, 0, 0, 3.1064556, 0, 0, 0, 1.6404309, 0, 3.574732, 0.01007843)
+shape = SubResource("CapsuleShape3D_82xsv")
+
+[node name="CanopyStatic" type="StaticBody3D" parent="LevelDesign/WizardTree" unique_id=821088332]
+collision_layer = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/WizardTree/CanopyStatic" unique_id=214088314]
+transform = Transform3D(9.358378, 0, 0, 0, 1, 0, 0, 0, 9.529767, 0.948287, 10.204459, 0.73503673)
 shape = SubResource("SphereShape3D_ycdy4")
 
 [node name="BusStop" parent="LevelDesign" unique_id=1624446041 instance=ExtResource("3_272bh")]
@@ -122,6 +210,15 @@ transform = Transform3D(37.356266, -1.7244493e-14, 4.8568674e-13, 0, 2.4252932, 
 shape = SubResource("BoxShape3D_ycdy4")
 debug_fill = false
 
+[node name="TrashCan_03" parent="LevelDesign" unique_id=965375323 instance=ExtResource("4_5vw27")]
+transform = Transform3D(0.336446, 0, 0, 0, 0.336446, 0, 0, 0, 0.336446, 16.481058, 0.67086035, 35.364403)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/TrashCan_03" unique_id=202021910]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/TrashCan_03/StaticBody3D" unique_id=1696282138]
+transform = Transform3D(2.6476378, 0, 0, 0, 2.6476378, 0, 0, 0, 2.6476378, 0, -0.028764725, 0)
+shape = SubResource("CylinderShape3D_w48qg")
+
 [node name="TrashCan_02" parent="LevelDesign" unique_id=1040505124 instance=ExtResource("4_5vw27")]
 transform = Transform3D(0.34309176, 0, 0, 0, 0.34309176, 0, 0, 0, 0.34309176, 14.706787, 0.6816919, 1.8703103)
 
@@ -130,21 +227,6 @@ transform = Transform3D(0.34309176, 0, 0, 0, 0.34309176, 0, 0, 0, 0.34309176, 14
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/TrashCan_02/StaticBody3D" unique_id=1518820208]
 transform = Transform3D(2.6476378, 0, 0, 0, 2.6476378, 0, 0, 0, 2.6476378, 0, -0.42597473, 0)
 shape = SubResource("CylinderShape3D_w48qg")
-
-[node name="TrashCan_03" parent="LevelDesign/TrashCan_02" unique_id=965375323 instance=ExtResource("4_5vw27")]
-transform = Transform3D(0.98062974, 0, 0, 0, 0.98062974, 0, 0, 0, 0.98062974, 5.171419, 0.68169177, 97.6243)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/TrashCan_02/TrashCan_03" unique_id=202021910]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/TrashCan_02/TrashCan_03/StaticBody3D" unique_id=1696282138]
-transform = Transform3D(2.6476378, 0, 0, 0, 2.6476378, 0, 0, 0, 2.6476378, 0, -0.028764725, 0)
-shape = SubResource("CylinderShape3D_w48qg")
-
-[node name="Tree_Green_02" parent="LevelDesign" unique_id=1665182946 instance=ExtResource("5_kek77")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.295946, -0.63085324, 18.777012)
-
-[node name="WizardTree" parent="LevelDesign" unique_id=1832970522 instance=ExtResource("6_4c57u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.577743, 0.040553313, 52.346603)
 
 [node name="Bench_02" parent="LevelDesign" unique_id=1708215277 instance=ExtResource("7_efxa6")]
 transform = Transform3D(-4.508807e-09, 0, 0.103149496, 0, 0.103149496, 0, -0.103149496, 0, -4.508807e-09, 1.0690346, 0.43997043, 8.737121)
@@ -174,56 +256,69 @@ shape = SubResource("BoxShape3D_vivmo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.25477836, 9.251544, -4.7683716e-07, 57.526188)
 polygon = PackedVector2Array(0, 0, 0.16478539, 0.9024625, 0.8081894, 0.9079927, 1, 0)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/CSGPolygon3D" unique_id=1149511080]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/CSGPolygon3D/StaticBody3D" unique_id=167542146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50196743, 0.50926507, 0)
+shape = SubResource("BoxShape3D_ryguw")
+
 [node name="Low Poly Donut Truck" parent="LevelDesign" unique_id=57520996 instance=ExtResource("9_4c57u")]
 transform = Transform3D(-3.5975292, 0, -3.14506e-07, 0, 3.5975292, 0, 3.14506e-07, 0, -3.5975292, 17.894047, 0.04055119, 30.495815)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LevelDesign" unique_id=499142959]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Low Poly Donut Truck" unique_id=1304811654]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Low Poly Donut Truck/StaticBody3D" unique_id=883496237]
+transform = Transform3D(1, 0, 0, 0, 1.195083, 0, 0, 0, 2.1043277, 0, 0.5861419, 0)
+shape = SubResource("BoxShape3D_d13ii")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Low Poly Donut Truck/StaticBody3D" unique_id=1041003144]
+transform = Transform3D(0.47460127, 0, 0, 0, 0.8672899, 0, 0, 0, 0.8571863, 2.2502403e-08, 1.5829656, -0.20500794)
+shape = SubResource("SphereShape3D_1u8w0")
+
+[node name="GroundPlane" type="MeshInstance3D" parent="LevelDesign" unique_id=499142959]
 transform = Transform3D(18.997673, 0, 0, 0, 0.081102125, 0, 0, 0, 63.15629, 9.720443, 0, 26.710424)
 mesh = SubResource("BoxMesh_w48qg")
 
 [node name="Trunk_01" parent="LevelDesign" unique_id=659136301 instance=ExtResource("11_dg77c")]
 transform = Transform3D(0.25780743, 0, -0.9661963, 0, 1, 0, 0.9661963, 0, 0.25780743, 1.7873603, 0.43869615, 41.20787)
 
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Trunk_01" unique_id=798807496]
+collision_layer = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Trunk_01/StaticBody3D" unique_id=754001106]
+transform = Transform3D(4.1993685, 0, 0, 0, 0.60733485, 0, 0, 0, 0.6976234, 0.25528336, 0, 1.9073486e-06)
+shape = SubResource("BoxShape3D_82xsv")
+
 [node name="Trunk_02" parent="LevelDesign" unique_id=1070339728 instance=ExtResource("12_ycdy4")]
 transform = Transform3D(0.9782527, 0, -0.20741658, 0, 1, 0, 0.20741658, 0, 0.9782527, 2.6777105, 0.052083194, 39.355206)
 
-[node name="Tree_Green_03" parent="." unique_id=671729381 instance=ExtResource("13_ycdy4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.86723757, 9.536743e-07, 34.1992)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Trunk_02" unique_id=2098001634]
 
-[node name="BushBlueFlowers" parent="." unique_id=365197017 instance=ExtResource("13_cegan")]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Trunk_02/StaticBody3D" unique_id=597268142]
+transform = Transform3D(0.881929, 0, 0, 0, 1.322338, 0, 0, 0, 0.881929, 0, 0.5957781, 0)
+shape = SubResource("BoxShape3D_getpj")
+
+[node name="BushBlueFlowers" parent="LevelDesign" unique_id=365197017 instance=ExtResource("13_cegan")]
 transform = Transform3D(0.2055702, 0, 0, 0, 0.1737817, 0, 0, 0, 0.17418166, 12.790546, 0.3060192, 4.013502)
 
-[node name="Flower_03" parent="." unique_id=1585571437 instance=ExtResource("14_82xsv")]
+[node name="Flower_03" parent="LevelDesign" unique_id=1585571437 instance=ExtResource("14_82xsv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.343583, 0, -4.0562425)
 
-[node name="Flower_04" parent="." unique_id=1965995155 instance=ExtResource("15_getpj")]
+[node name="Flower_04" parent="LevelDesign" unique_id=1965995155 instance=ExtResource("15_getpj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.513291, 0.4178189, -2.5924125)
 
-[node name="Flower_05" parent="." unique_id=997966826 instance=ExtResource("16_ryguw")]
+[node name="Flower_05" parent="LevelDesign" unique_id=997966826 instance=ExtResource("16_ryguw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5288258, 0, 18.814411)
 
-[node name="Flower_02" parent="." unique_id=879209410 instance=ExtResource("17_d13ii")]
+[node name="Flower_02" parent="LevelDesign" unique_id=879209410 instance=ExtResource("17_d13ii")]
 transform = Transform3D(1, 0, 0, 0, 0.66465795, 0, 0, 0, 1, 1.3457608, 0.35692835, 10.051989)
 
-[node name="Bush_01" parent="." unique_id=1787935338 instance=ExtResource("18_1u8w0")]
+[node name="Bush_01" parent="LevelDesign" unique_id=1787935338 instance=ExtResource("18_1u8w0")]
 transform = Transform3D(0.21646537, 0, 0, 0, 0.21646537, 0, 0, 0, 0.21646537, 18.597296, 0.3614924, 56.99828)
 
-[node name="Walking (1)" parent="." unique_id=84242296 instance=ExtResource("19_0odxb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.084073, -1.1920929e-07, -0.44993854)
-
-[node name="Skeleton3D" parent="Walking (1)" index="0" unique_id=425195140]
-bones/12/rotation = Quaternion(-2.8406097e-17, 3.469447e-18, 3.84255e-33, 1)
-bones/16/rotation = Quaternion(0.24343243, -0.03460498, 0.008691127, 0.9692614)
-bones/17/rotation = Quaternion(0.0009453397, -1.6659651e-05, -0.017618783, 0.9998444)
-bones/21/rotation = Quaternion(-1.92593e-33, -2.4074124e-33, -3.469447e-17, 1)
-bones/24/rotation = Quaternion(0.0152735, -0.00012443184, -0.00814569, 0.9998502)
-bones/31/rotation = Quaternion(0.24836175, 0.013545351, -0.0034733256, 0.9685665)
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Walking (1)" unique_id=1359584169]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walking (1)/RigidBody3D" unique_id=484861750]
-transform = Transform3D(0.63395286, 0, 0, 0, 0.63395286, 0, 0, 0, 0.63395286, 0, 0.71292484, 0)
-shape = SubResource("CapsuleShape3D_a6jrf")
-
-[editable path="umbrellawanim"]
-[editable path="Walking (1)"]
+[editable path="Kid"]
+[editable path="LevelDesign/Tree_Green_01"]
+[editable path="LevelDesign/Tree_Green_02"]
+[editable path="LevelDesign/Tree_Green_03"]
+[editable path="LevelDesign/WizardTree"]
