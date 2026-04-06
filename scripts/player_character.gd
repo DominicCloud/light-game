@@ -1,9 +1,16 @@
+class_name UmbrellaPlayerController
 extends CharacterBody3D
 
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+@onready var _canopy: MeshInstance3D = $sprite/canopy
+@onready var _anim: AnimationPlayer = $sprite/anim
 var mesh_material: Material
 
+var is_open: bool = true
 @export var camera: Camera3D
+
+## Speed at which the canopy opens/closes (0→1 range per second).
+@export var canopy_speed: float = 1.0
 
 # Movement
 @export var move_speed: float = 5.0
@@ -17,29 +24,47 @@ var mesh_material: Material
 @export var tilt_speed: float = 8.0
 @export var max_tilt: float = deg_to_rad(15.0)
 
+var _canopy_value: float = 0.0
+
 func _ready() -> void:
 	mesh_material = mesh_instance_3d.get_active_material(0)
 
 	if not camera:
 		camera = get_tree().get_first_node_in_group("Camera") as Camera3D
+	
+	if not _canopy:
+		push_error("UmbrellaPlayerController: could not find 'canopy' node under $sprite")
+		return
+	_anim.stop()
+
 
 func _physics_process(delta: float) -> void:
-	# Gravity
-	if not is_on_floor():
-		if Input.is_action_pressed("drop"):
-			mesh_material.albedo_color = Color.RED
-			velocity.y -= gravity_strength * 1.5 * delta
-		elif Input.is_action_just_released("drop"):
-			mesh_material.albedo_color = Color.GREEN
-			velocity = Vector3(0, 5, 0)
-		else:
-			mesh_material.albedo_color = Color.CYAN
-			velocity.y -= gravity_strength / 4 * delta
+	# Determine target canopy state
+	var canopy_target: float
+	if not is_on_floor() and Input.is_action_pressed("drop"):
+		is_open = false
+		canopy_target = 1.0
+		mesh_material.albedo_color = Color.RED
+		velocity.y -= gravity_strength * 1.5 * delta
 	else:
-		velocity.y = 0.0
+		if Input.is_action_just_released("drop"):
+			velocity = Vector3(0, 5, 0)
+		is_open = true
+		canopy_target = 0.0
+		mesh_material.albedo_color = Color.CYAN if not is_on_floor() else Color.GREEN
+		if is_on_floor():
+			velocity.y = 0.0
+		else:
+			velocity.y -= gravity_strength / 4 * delta
+
+	# Smooth blend shape transition from any intermediate value
+	_canopy_value = move_toward(_canopy_value, canopy_target, canopy_speed * delta)
+	if _canopy:
+		_canopy.set_blend_shape_value(0, _canopy_value)
 
 	# Boost (Space)
 	if Input.is_action_just_pressed("boost"):
+		is_open = true
 		velocity.y = boost_speed
 
 	# Input (WASD)

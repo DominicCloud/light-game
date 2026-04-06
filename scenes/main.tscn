@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ddev36s3u1yxb" path="res://modelAssets/StreetProps/FBX/Bench_02.fbx" id="7_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bshfu38cetgas" path="res://modelAssets/StreetProps/FBX/PhoneBooth_02.fbx" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://b4470k8gi2w5i" path="res://modelAssets/DonutTruck/Low Poly Donut Truck.fbx" id="9_4c57u"]
-[ext_resource type="PackedScene" uid="uid://bxp0qfwmw22ai" path="res://modelAssets/umbrellawanim.glb" id="10_4c57u"]
 [ext_resource type="PackedScene" uid="uid://ddfvv7myjl4sh" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_01.fbx" id="11_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dfxlklnjylvdj" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_02.fbx" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://b1vy0esiqx7uj" path="res://modelAssets/EnvironomentPackV_2/FBX/BushBlueFlowers.fbx" id="13_cegan"]
@@ -26,6 +25,7 @@
 [ext_resource type="Script" uid="uid://cr2w08ioj7jxy" path="res://scripts/ai_path_follow.gd" id="23_y6deb"]
 [ext_resource type="Script" uid="uid://dkee5j22br473" path="res://scripts/sunexposuredetector.gd" id="25_2wyq8"]
 [ext_resource type="Script" uid="uid://0pxlipro3apo" path="res://scripts/deadzone.gd" id="25_og1vs"]
+[ext_resource type="Script" uid="uid://ion1ymxxj8dv" path="res://scripts/UI.gd" id="27_vxglm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -399,9 +399,6 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 6.
 collision_layer = 3
 camera = NodePath("../Camera3D")
 
-[node name="sprite" parent="PlayerCharacter" unique_id=1353634655 instance=ExtResource("10_4c57u")]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.29421663, 0)
-
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2016982088 node_paths=PackedStringArray("player")]
 script = ExtResource("23_pm3ni")
 player = NodePath("../PlayerCharacter")
@@ -409,14 +406,19 @@ player = NodePath("../PlayerCharacter")
 [node name="AI_boy_path" type="Path3D" parent="." unique_id=946400240]
 curve = SubResource("Curve3D_pm3ni")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="AI_boy_path" unique_id=684530712]
+[node name="PathFollow3D" type="PathFollow3D" parent="AI_boy_path" unique_id=684530712 node_paths=PackedStringArray("kid")]
 transform = Transform3D(-0.20012356, 0, 0.97977066, 0, 1, 0, -0.97977066, 0, -0.20012356, 5.173996, 0, -0.049383894)
 use_model_front = true
 script = ExtResource("23_y6deb")
+kid = NodePath("Kid")
 
-[node name="Kid" parent="AI_boy_path/PathFollow3D" unique_id=84242296 node_paths=PackedStringArray("kid") instance=ExtResource("19_0odxb")]
+[node name="Kid" parent="AI_boy_path/PathFollow3D" unique_id=84242296 node_paths=PackedStringArray("kid", "umbrella") instance=ExtResource("19_0odxb")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
 script = ExtResource("25_2wyq8")
 kid = NodePath(".")
+umbrella = NodePath("../../../PlayerCharacter")
+sunburn_rate = 15.0
+recovery_rate = 2.0
 
 [node name="Skeleton3D" parent="AI_boy_path/PathFollow3D/Kid" index="0" unique_id=1250774601]
 bones/0/position = Vector3(0.0010825577, 0.56941277, -0.006898177)
@@ -449,9 +451,6 @@ bones/29/rotation = Quaternion(-0.14636496, -0.0689439, 0.018740514, 0.9866473)
 bones/30/rotation = Quaternion(0.57387686, -0.024456916, -0.03940195, 0.8176275)
 bones/31/rotation = Quaternion(0.28948325, 0.020411264, -0.007069599, 0.95693934)
 
-[node name="AnimationPlayer" parent="AI_boy_path/PathFollow3D/Kid" index="1" unique_id=920321997]
-autoplay = &"mixamo_com"
-
 [node name="RigidBody3D" type="RigidBody3D" parent="AI_boy_path/PathFollow3D/Kid" unique_id=1359584169]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AI_boy_path/PathFollow3D/Kid/RigidBody3D" unique_id=484861750]
@@ -465,6 +464,61 @@ camera = NodePath("../Camera3D")
 
 [node name="Deadzone" type="CollisionShape3D" parent="Area3D" unique_id=893130418]
 shape = SubResource("WorldBoundaryShape3D_2wyq8")
+
+[node name="Control" type="Control" parent="." unique_id=1969222550 node_paths=PackedStringArray("kid", "follow_path")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_vxglm")
+kid = NodePath("../AI_boy_path/PathFollow3D/Kid")
+follow_path = NodePath("../AI_boy_path/PathFollow3D")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control" unique_id=827705197]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -212.0
+offset_right = -710.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/BoxContainer" unique_id=437479522]
+custom_minimum_size = Vector2(50, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+step = 1.0
+fill_mode = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1092750887]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.99994
+offset_top = -163.99997
+offset_right = -213.99994
+offset_bottom = -123.99997
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(8.973532, 8.973532)
+
+[node name="Victory" type="Label" parent="Control/CenterContainer" unique_id=1201318047]
+visible = false
+layout_mode = 2
+text = "Thanks for 
+  playing!"
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 

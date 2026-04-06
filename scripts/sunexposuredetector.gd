@@ -1,29 +1,24 @@
-extends Node
+class_name Kid
+extends Node3D
+
 
 ## SunExposureDetector.gd
-## Attach this script to the Kid node (or any node with access to the kid).
-## Detects whether the kid is shaded from the sun using raycasting.
-## The sun is assumed to be directly overhead (straight down).
+## Attach this script to the Kid node.
+## Detects whether the kid is shaded by the umbrella using a distance check.
 
 # ── Inspector Settings ────────────────────────────────────────────────────────
 
 @export_group("References")
-## The Kid's CharacterBody3D (or Node3D). Assign in the inspector.
+## The Kid's Node3D. Assign in the inspector.
 @export var kid: Node3D
+## The umbrella (PlayerCharacter) node.
+@export var umbrella: UmbrellaPlayerController
 
-@export_group("Raycast Settings")
-## How high above the kid to start the ray. Should clear all geometry above.
-@export var ray_start_height: float = 50.0
-## Collision mask layers that can BLOCK the sun (umbrella + environment).
-## Set this to match your umbrella and environment physics layers.
-@export_flags_3d_physics var umbrella_layer: int = 2
-@export_flags_3d_physics var environment_layer: int = 1
-@export_flags_3d_physics var canopy_layer: int = 8
-## Extra sample points around the kid for partial shade detection.
-## 0 = single centre ray only. Higher = more accurate but more expensive.
-@export_range(0, 8) var sample_count: int = 4
-## Radius around the kid's origin to spread the sample points.
-@export var sample_radius: float = 0.3
+@export_group("Shadow Settings")
+## Radius of the umbrella's shadow on the ground.
+@export var shadow_radius: float = 3.0
+## Soft edge width — distance over which shade fades to full exposure.
+@export var shadow_falloff: float = 0.5
 
 @export_group("Sunburn Settings")
 ## Maximum health the kid can have.
@@ -34,10 +29,6 @@ extends Node
 @export var recovery_rate: float = 4.0
 ## If true, health can recover in shade. If false, only sunburn accumulates.
 @export var allow_recovery: bool = true
-
-@export_group("Debug")
-## Draw debug rays in the editor viewport (requires Debug Draw plugin or Godot 4.3+).
-@export var debug_draw: bool = true
 
 # ── Public State (read from other scripts) ───────────────────────────────────
 
@@ -58,17 +49,15 @@ signal kid_got_sunburnt
 # ── Private ──────────────────────────────────────────────────────────────────
 
 var _was_exposed: bool = false
-var _space_state: PhysicsDirectSpaceState3D
 
 # ── Lifecycle ────────────────────────────────────────────────────────────────
 
 func _ready() -> void:
 	health = max_health
-	# Grab the physics space from the kid's world (or fall back to self).
-	if kid:
-		_space_state = kid.get_world_3d().direct_space_state
-	else:
+	if not kid:
 		push_error("SunExposureDetector: 'kid' is not assigned!")
+	if not umbrella:
+		push_error("SunExposureDetector: 'umbrella' is not assigned!")
 
 func _physics_process(delta: float) -> void:
 	if not kid:
@@ -80,72 +69,38 @@ func _physics_process(delta: float) -> void:
 
 # ── Core Logic ────────────────────────────────────────────────────────────────
 
-## Returns a value between 0.0 (fully shaded) and 1.0 (fully exposed).
-## Uses multiple sample points around the kid for partial-shade detection.
+## Returns 0.0 (fully shaded) to 1.0 (fully exposed).
+## Uses the umbrella's horizontal distance to the kid and its open state.
 func _calculate_exposure() -> float:
-	var sample_points := _get_sample_points()
-	var exposed_count := 0
+	if not umbrella:
+		return 1.0
 
-	for point in sample_points:
-		if _is_point_exposed(point):
-			exposed_count += 1
+	# Umbrella must be open and above the kid to cast shade.
+	if not umbrella.is_open:
+		return 1.0
+	if umbrella.global_position.y < kid.global_position.y:
+		return 1.0
 
-	return float(exposed_count) / float(sample_points.size())
+	var flat_dist := Vector2(
+		umbrella.global_position.x - kid.global_position.x,
+		umbrella.global_position.z - kid.global_position.z
+	).length()
 
-
-## Casts a single ray straight down from above `point`.
-## Returns true if nothing blocks the sun before reaching the point.
-func _is_point_exposed(point: Vector3) -> bool:
-	var ray_origin := Vector3(point.x, point.y + ray_start_height, point.z)
-	var ray_target := point  # straight down to the sample point
-
-	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_target)
-	var all_blocking := umbrella_layer | environment_layer | canopy_layer
-	query.collision_mask = all_blocking
-	# Exclude the kid's own collider so it doesn't block its own rays.
-	if kid is CollisionObject3D:
-		query.exclude = [kid.get_rid()]
-
-	var result := _space_state.intersect_ray(query)
-
-	if debug_draw:
-		_draw_debug_ray(ray_origin, ray_target, result.is_empty())
-
-	# If nothing was hit, the sun ray reached the kid unobstructed.
-	return result.is_empty()
-
-
-## Builds the list of world-space points to sample around the kid.
-func _get_sample_points() -> Array[Vector3]:
-	var points: Array[Vector3] = []
-	var origin := kid.global_position
-
-	# Always include the centre point.
-	points.append(origin)
-
-	# Add evenly-spaced points in a ring around the kid.
-	if sample_count > 0:
-		var angle_step := TAU / float(sample_count)
-		for i in sample_count:
-			var angle := angle_step * i
-			var offset := Vector3(cos(angle) * sample_radius, 0.0, sin(angle) * sample_radius)
-			points.append(origin + offset)
-
-	return points
+	# Fully shaded inside the radius, smooth falloff at the edge.
+	return smoothstep(shadow_radius - shadow_falloff, shadow_radius + shadow_falloff, flat_dist)
 
 
 ## Applies sunburn or recovery to the kid's health based on current exposure.
 func _update_health(delta: float) -> void:
 	if exposure > 0.0:
-		# Partial exposure scales the damage proportionally.
 		health -= sunburn_rate * exposure * delta
 	elif allow_recovery:
 		health += recovery_rate * delta
 
 	health = clampf(health, 0.0, max_health)
-
 	if health <= 0.0:
 		kid_got_sunburnt.emit()
+		queue_free()
 
 
 ## Fires transition signals when the kid crosses between shaded/exposed states.
@@ -157,22 +112,13 @@ func _emit_transition_signals() -> void:
 		sun_exposure_ended.emit()
 	_was_exposed = is_exposed
 
-# ── Debug ─────────────────────────────────────────────────────────────────────
-
-func _draw_debug_ray(origin: Vector3, target: Vector3, is_exposed: bool) -> void:
-	# Uses DebugDraw3D plugin if available, otherwise prints to output.
-	# Replace with your preferred debug visualisation method.
-	var color := Color.RED if is_exposed else Color.GREEN
-	if Engine.has_singleton("DebugDraw3D"):
-		Engine.get_singleton("DebugDraw3D").draw_line(origin, target, color)
-
 # ── Public Helpers ────────────────────────────────────────────────────────────
 
 ## Returns true if the kid is receiving any direct sunlight at all.
 func is_exposed() -> bool:
 	return exposure > 0.0
 
-## Returns true if the kid is fully shaded (no sample points are exposed).
+## Returns true if the kid is fully shaded.
 func is_fully_shaded() -> bool:
 	return exposure == 0.0
 

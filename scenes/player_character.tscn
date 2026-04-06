@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://bglcvvr3cuuy5"]
 
 [ext_resource type="Script" uid="uid://cqfrv8sujc3lc" path="res://scripts/player_character.gd" id="1_56udc"]
+[ext_resource type="PackedScene" uid="uid://cisit82codlfy" path="res://scenes/umbrella_sprite.tscn" id="2_sprite"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56udc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_yqrqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_56udc"]
+radius = 0.44158936
+height = 0.8831787
 
 [node name="PlayerCharacter" type="CharacterBody3D" unique_id=812141171]
 script = ExtResource("1_56udc")
@@ -17,4 +20,8 @@ material_override = SubResource("StandardMaterial3D_56udc")
 mesh = SubResource("CapsuleMesh_yqrqw")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1339951265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.105407715, 0)
 shape = SubResource("CapsuleShape3D_56udc")
+
+[node name="sprite" parent="." unique_id=861039439 instance=ExtResource("2_sprite")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
