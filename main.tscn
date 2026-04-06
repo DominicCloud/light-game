@@ -36,6 +36,8 @@
 [ext_resource type="PackedScene" uid="uid://dd6ne71cslme8" path="res://modelAssets/Environoment Pack V.1/FBX/Rock_03.fbx" id="34_hrvbo"]
 [ext_resource type="PackedScene" uid="uid://ci2hufrli2ue4" path="res://modelAssets/Environoment Pack V.1/FBX/Rock_04.fbx" id="35_uypp3"]
 [ext_resource type="PackedScene" uid="uid://bv3w58ukhtgiu" path="res://modelAssets/Environoment Pack V.1/FBX/Rock_06.fbx" id="36_blkrb"]
+[ext_resource type="PackedScene" uid="uid://byi36p8sf3op8" path="res://modelAssets/StreetProps/FBX/Cone_01.fbx" id="37_b1qrp"]
+[ext_resource type="PackedScene" uid="uid://c3lhpheani45y" path="res://modelAssets/StreetProps/FBX/Cone_02.fbx" id="38_come4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -446,6 +448,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.0749784, 0, 56.856586)
 
 [node name="Daisy5" parent="." unique_id=1574229905 instance=ExtResource("27_d2t1y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.786932, 0, 37.550438)
+
+[node name="Rose3" parent="." unique_id=442021405 instance=ExtResource("24_h8e4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.558584, 0, 34.21688)
+
+[node name="Cone_01" parent="." unique_id=445540197 instance=ExtResource("37_b1qrp")]
+transform = Transform3D(0.5844101, 0, 0, 0, 0.5877683, 0, 0, 0, 0.62027115, 16.500505, 0.5040555, 40.594448)
+
+[node name="Cone_02" parent="." unique_id=443654046 instance=ExtResource("38_come4")]
+transform = Transform3D(0.72243047, 0, 0, 0, 0.74820447, 0, 0, 0, 0.78770274, 18.136263, 0.87403464, 41.96542)
 
 [editable path="umbrellawanim"]
 [editable path="Walking (1)"]
