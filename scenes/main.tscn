@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddev36s3u1yxb" path="res://modelAssets/StreetProps/FBX/Bench_02.fbx" id="7_efxa6"]
 [ext_resource type="PackedScene" uid="uid://bshfu38cetgas" path="res://modelAssets/StreetProps/FBX/PhoneBooth_02.fbx" id="8_kek77"]
 [ext_resource type="PackedScene" uid="uid://b4470k8gi2w5i" path="res://modelAssets/DonutTruck/Low Poly Donut Truck.fbx" id="9_4c57u"]
+[ext_resource type="AudioStream" uid="uid://dal5h7t1tc2t7" path="res://assets/audio/ice_cream_truck.mp3" id="10_yq6so"]
 [ext_resource type="PackedScene" uid="uid://ddfvv7myjl4sh" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_01.fbx" id="11_dg77c"]
 [ext_resource type="PackedScene" uid="uid://dfxlklnjylvdj" path="res://modelAssets/Environoment Pack V.1/FBX/Trunk_02.fbx" id="12_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://b1vy0esiqx7uj" path="res://modelAssets/EnvironomentPackV_2/FBX/BushBlueFlowers.fbx" id="13_cegan"]
@@ -25,7 +26,9 @@
 [ext_resource type="Script" uid="uid://cr2w08ioj7jxy" path="res://scripts/ai_path_follow.gd" id="23_y6deb"]
 [ext_resource type="Script" uid="uid://dkee5j22br473" path="res://scripts/sunexposuredetector.gd" id="25_2wyq8"]
 [ext_resource type="Script" uid="uid://0pxlipro3apo" path="res://scripts/deadzone.gd" id="25_og1vs"]
+[ext_resource type="AudioStream" uid="uid://053ked4j1hj5" path="res://assets/audio/footsteps.mp3" id="26_fv21b"]
 [ext_resource type="PackedScene" uid="uid://cw2et1k385j7t" path="res://scenes/slider.tscn" id="27_2f3dj"]
+[ext_resource type="AudioStream" uid="uid://cr8acegacrg55" path="res://assets/audio/wind.mp3" id="27_tel4y"]
 [ext_resource type="Script" uid="uid://ion1ymxxj8dv" path="res://scripts/UI.gd" id="27_vxglm"]
 [ext_resource type="Texture2D" uid="uid://chdomc00rvws6" path="res://assets/splashscreen.jpg" id="28_2f3dj"]
 
@@ -263,19 +266,25 @@ polygon = PackedVector2Array(0, 0, 0.16478539, 0.9024625, 0.8081894, 0.9079927, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.50196743, 0.50926507, 0)
 shape = SubResource("BoxShape3D_ryguw")
 
-[node name="Low Poly Donut Truck" parent="LevelDesign" unique_id=57520996 instance=ExtResource("9_4c57u")]
+[node name="Donut Truck" parent="LevelDesign" unique_id=57520996 instance=ExtResource("9_4c57u")]
 transform = Transform3D(-3.5975292, 0, -3.14506e-07, 0, 3.5975292, 0, 3.14506e-07, 0, -3.5975292, 17.894047, 0.04055119, 30.495815)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Low Poly Donut Truck" unique_id=1304811654]
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDesign/Donut Truck" unique_id=1304811654]
 collision_layer = 13
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Low Poly Donut Truck/StaticBody3D" unique_id=883496237]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDesign/Donut Truck/StaticBody3D" unique_id=883496237]
 transform = Transform3D(1, 0, 0, 0, 1.195083, 0, 0, 0, 2.1043277, 0, 0.5861419, 0)
 shape = SubResource("BoxShape3D_d13ii")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Low Poly Donut Truck/StaticBody3D" unique_id=1041003144]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="LevelDesign/Donut Truck/StaticBody3D" unique_id=1041003144]
 transform = Transform3D(0.47460127, 0, 0, 0, 0.8672899, 0, 0, 0, 0.8571863, 2.2502403e-08, 1.5829656, -0.20500794)
 shape = SubResource("SphereShape3D_1u8w0")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="LevelDesign/Donut Truck" unique_id=437809562]
+stream = ExtResource("10_yq6so")
+volume_db = -12.0
+autoplay = true
+max_distance = 10.0
 
 [node name="Trunk_01" parent="LevelDesign" unique_id=659136301 instance=ExtResource("11_dg77c")]
 transform = Transform3D(0.25780743, 0, -0.9661963, 0, 1, 0, 0.9661963, 0, 0.25780743, 1.7873603, 0.43869615, 41.20787)
@@ -409,7 +418,7 @@ player = NodePath("../PlayerCharacter")
 curve = SubResource("Curve3D_pm3ni")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="AI_boy_path" unique_id=684530712 node_paths=PackedStringArray("kid")]
-transform = Transform3D(-0.20012356, 0, 0.97977066, 0, 1, 0, -0.97977066, 0, -0.20012356, 5.173996, 0, -0.049383894)
+transform = Transform3D(-0.20012327, 0, 0.97976923, 0, 1, 0, -0.97976923, 0, -0.20012327, 5.173996, 0, -0.049383894)
 use_model_front = true
 script = ExtResource("23_y6deb")
 kid = NodePath("Kid")
@@ -458,6 +467,14 @@ bones/31/rotation = Quaternion(0.28948325, 0.020411264, -0.007069599, 0.95693934
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AI_boy_path/PathFollow3D/Kid/RigidBody3D" unique_id=484861750]
 transform = Transform3D(0.63395286, 0, 0, 0, 0.63395286, 0, 0, 0, 0.63395286, 0, 0.71292484, 0)
 shape = SubResource("CapsuleShape3D_a6jrf")
+
+[node name="audio" type="AudioStreamPlayer3D" parent="AI_boy_path/PathFollow3D/Kid" unique_id=1749522837]
+stream = ExtResource("26_fv21b")
+pitch_scale = 0.7
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AI_boy_path/PathFollow3D" unique_id=1727942965]
+stream = ExtResource("27_tel4y")
+volume_db = 4.66
 
 [node name="Area3D" type="Area3D" parent="." unique_id=495786756 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.900088, -12.795416, 13.075052)

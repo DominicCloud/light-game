@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var _canopy: MeshInstance3D = $sprite/canopy
 @onready var _anim: AnimationPlayer = $sprite/anim
 var mesh_material: Material
+@onready var umbrella_close_sfx: AudioStreamPlayer = $umbrella_close_sfx
 
 var is_open: bool = true
 @export var camera: Camera3D
@@ -43,6 +44,8 @@ func _physics_process(delta: float) -> void:
 	var canopy_target: float
 	if not is_on_floor() and Input.is_action_pressed("drop"):
 		is_open = false
+		# play audio
+		umbrella_close_sfx.play()
 		canopy_target = 1.0
 		mesh_material.albedo_color = Color.RED
 		velocity.y -= gravity_strength * 1.5 * delta
