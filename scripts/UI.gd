@@ -15,8 +15,7 @@ func _ready() -> void:
 func _display_label() -> void:
 	victory.visible = true
 	healthbar.visible = false
-	await get_tree().create_timer(3.0).timeout
-	get_tree().quit()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

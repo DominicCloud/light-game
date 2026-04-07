@@ -23,6 +23,10 @@ window/size/mode=2
 
 import/blender/enabled=false
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 boost={
@@ -71,5 +75,4 @@ drop={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

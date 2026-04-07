@@ -16,7 +16,7 @@ extends Node3D
 
 @export_group("Shadow Settings")
 ## Radius of the umbrella's shadow on the ground.
-@export var shadow_radius: float = 3.0
+@export var shadow_radius: float = 2.0
 ## Soft edge width — distance over which shade fades to full exposure.
 @export var shadow_falloff: float = 0.5
 

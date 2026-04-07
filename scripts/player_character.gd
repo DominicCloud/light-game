@@ -4,7 +4,6 @@ extends CharacterBody3D
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 @onready var _canopy: MeshInstance3D = $sprite/canopy
 @onready var _anim: AnimationPlayer = $sprite/anim
-var mesh_material: Material
 @onready var umbrella_close_sfx: AudioStreamPlayer = $umbrella_close_sfx
 
 var is_open: bool = true
@@ -28,8 +27,6 @@ var is_open: bool = true
 var _canopy_value: float = 0.0
 
 func _ready() -> void:
-	mesh_material = mesh_instance_3d.get_active_material(0)
-
 	if not camera:
 		camera = get_tree().get_first_node_in_group("Camera") as Camera3D
 	
@@ -42,19 +39,21 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Determine target canopy state
 	var canopy_target: float
+	#if Input.is_action_just_pressed("drop"):
+		## play audio
+		#umbrella_close_sfx.play()
+		
 	if not is_on_floor() and Input.is_action_pressed("drop"):
 		is_open = false
 		# play audio
 		umbrella_close_sfx.play()
 		canopy_target = 1.0
-		mesh_material.albedo_color = Color.RED
 		velocity.y -= gravity_strength * 1.5 * delta
 	else:
 		if Input.is_action_just_released("drop"):
 			velocity = Vector3(0, 5, 0)
 		is_open = true
 		canopy_target = 0.0
-		mesh_material.albedo_color = Color.CYAN if not is_on_floor() else Color.GREEN
 		if is_on_floor():
 			velocity.y = 0.0
 		else:

@@ -16,8 +16,8 @@ axis_stretch_vertical = 2
 [node name="HSlider" type="HSlider" unique_id=169745860]
 material = SubResource("ShaderMaterial_cmgt1")
 offset_top = 1.0
-offset_right = 252.0
-offset_bottom = 434.0
+offset_right = 432.23148
+offset_bottom = 743.6835
 scale = Vector2(0.9987298, 1)
 pivot_offset = Vector2(250, 164)
 theme_override_icons/grabber = ExtResource("1_7wwkj")

@@ -31,6 +31,7 @@
 [ext_resource type="AudioStream" uid="uid://cr8acegacrg55" path="res://assets/audio/wind.mp3" id="27_tel4y"]
 [ext_resource type="Script" uid="uid://ion1ymxxj8dv" path="res://scripts/UI.gd" id="27_vxglm"]
 [ext_resource type="Texture2D" uid="uid://chdomc00rvws6" path="res://assets/splashscreen.jpg" id="28_2f3dj"]
+[ext_resource type="Script" uid="uid://luqeubkadyal" path="res://scripts/end_sequence.gd" id="32_qkpxi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_top_color = Color(0.7286907, 0.55100745, 0.57045156, 1)
@@ -109,6 +110,13 @@ point_count = 22
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a6jrf"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2wyq8"]
+
+[sub_resource type="Curve3D" id="Curve3D_tel4y"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 1.3372164, 0, -0.5339813, -0.14329147, 0, -0.464283, 0.14329147, 0, 0.464283, 2.40162, 0, 0.86551285, 0.28312588, 0, -0.64814377, -0.28312588, 0, 0.64814377, 2.322775, 0, 2.8563423, 0, 0, 0, 0, 0, 0, 0.9035711, 0, 4.1769905),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [node name="GameWorld" type="Node3D" unique_id=192753502]
 
@@ -284,7 +292,7 @@ shape = SubResource("SphereShape3D_1u8w0")
 stream = ExtResource("10_yq6so")
 volume_db = -12.0
 autoplay = true
-max_distance = 10.0
+max_distance = 30.0
 
 [node name="Trunk_01" parent="LevelDesign" unique_id=659136301 instance=ExtResource("11_dg77c")]
 transform = Transform3D(0.25780743, 0, -0.9661963, 0, 1, 0, 0.9661963, 0, 0.25780743, 1.7873603, 0.43869615, 41.20787)
@@ -408,20 +416,22 @@ transform = Transform3D(0.12128981, 0, 0.12128981, 0, 0.1715297, 0, -0.12128981,
 [node name="PlayerCharacter" parent="." unique_id=812141171 node_paths=PackedStringArray("camera") instance=ExtResource("21_jscy8")]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 6.1671453, 5.083959, 3.3633423)
 collision_layer = 3
-camera = NodePath("../Camera3D")
+camera = NodePath("../Main Camera")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2016982088 node_paths=PackedStringArray("player")]
+[node name="Main Camera" type="Camera3D" parent="." unique_id=2016982088 node_paths=PackedStringArray("player")]
 script = ExtResource("23_pm3ni")
 player = NodePath("../PlayerCharacter")
 
 [node name="AI_boy_path" type="Path3D" parent="." unique_id=946400240]
 curve = SubResource("Curve3D_pm3ni")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="AI_boy_path" unique_id=684530712 node_paths=PackedStringArray("kid")]
+[node name="PathFollow3D" type="PathFollow3D" parent="AI_boy_path" unique_id=684530712 node_paths=PackedStringArray("camera", "kid", "end_sequnce")]
 transform = Transform3D(-0.20012327, 0, 0.97976923, 0, 1, 0, -0.97976923, 0, -0.20012327, 5.173996, 0, -0.049383894)
 use_model_front = true
 script = ExtResource("23_y6deb")
+camera = NodePath("../../Main Camera")
 kid = NodePath("Kid")
+end_sequnce = NodePath("../../climax/end_sequence")
 
 [node name="Kid" parent="AI_boy_path/PathFollow3D" unique_id=84242296 node_paths=PackedStringArray("kid", "umbrella") instance=ExtResource("19_0odxb")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -472,14 +482,14 @@ shape = SubResource("CapsuleShape3D_a6jrf")
 stream = ExtResource("26_fv21b")
 pitch_scale = 0.7
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AI_boy_path/PathFollow3D" unique_id=1727942965]
+[node name="wind" type="AudioStreamPlayer" parent="AI_boy_path/PathFollow3D" unique_id=1727942965]
 stream = ExtResource("27_tel4y")
 volume_db = 4.66
 
 [node name="Area3D" type="Area3D" parent="." unique_id=495786756 node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.900088, -12.795416, 13.075052)
 script = ExtResource("25_og1vs")
-camera = NodePath("../Camera3D")
+camera = NodePath("../Main Camera")
 
 [node name="Deadzone" type="CollisionShape3D" parent="Area3D" unique_id=893130418]
 shape = SubResource("WorldBoundaryShape3D_2wyq8")
@@ -537,6 +547,9 @@ scale = Vector2(8.973532, 8.973532)
 [node name="Victory" type="Label" parent="Control/CenterContainer" unique_id=1201318047]
 visible = false
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 text = "Thanks for 
   playing!"
 
@@ -568,6 +581,20 @@ offset_right = 2732.0
 offset_bottom = 2048.0
 scale = Vector2(0.57609266, 0.57609266)
 texture = ExtResource("28_2f3dj")
+
+[node name="climax" type="Path3D" parent="." unique_id=928385526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.132296, 0.8514123, 53.458885)
+curve = SubResource("Curve3D_tel4y")
+
+[node name="end_sequence" type="PathFollow3D" parent="climax" unique_id=1461771331 node_paths=PackedStringArray("end_camera", "umbrella", "kid")]
+transform = Transform3D(-0.71245503, 0, -0.70171344, 0, 0.9999988, 0, 0.7017141, 0, -0.7124544, 1.3372164, 0, -0.5339813)
+script = ExtResource("32_qkpxi")
+end_camera = NodePath("Sequence Camera")
+umbrella = NodePath("../../PlayerCharacter")
+kid = NodePath("../../AI_boy_path/PathFollow3D/Kid")
+
+[node name="Sequence Camera" type="Camera3D" parent="climax/end_sequence" unique_id=1737804219]
+transform = Transform3D(0.24122271, 0, -0.9704698, 0, 1, 0, 0.9704698, 0, 0.24122271, 0.10573578, 0.3934543, 0.020439148)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 
