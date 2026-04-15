@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dc6xs6nxi6qxx"]
+
+[ext_resource type="PackedScene" uid="uid://bxp0qfwmw22ai" path="res://modelAssets/umbrellawanim.glb" id="1_3rp40"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rp40"]
+albedo_color = Color(0.885652, 0.43304685, 0.35725036, 1)
+
+[node name="umbrellawanim" unique_id=1737840894 instance=ExtResource("1_3rp40")]
+
+[node name="shaft" parent="." index="0" unique_id=1414229711]
+surface_material_override/0 = SubResource("StandardMaterial3D_3rp40")
+
+[node name="canopy" parent="." index="2" unique_id=77164297]
+transform = Transform3D(2.3090615, 0, 0, 0, 2.8236005, 0, 0, 0, 1.36, 0.046596803, -5.317763, -0.002496766)
+blend_shapes/Animation = 1.0

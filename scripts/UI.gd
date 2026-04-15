@@ -13,8 +13,9 @@ func _ready() -> void:
 	follow_path.level_successful.connect(_display_label)
 
 func _display_label() -> void:
-	victory.visible = true
 	healthbar.visible = false
+	await get_tree().create_timer(3.5).timeout
+	victory.visible = true
 
 
 
