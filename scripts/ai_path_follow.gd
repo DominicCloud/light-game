@@ -31,8 +31,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if progress_ratio > 0.05 and progress_ratio < 0.1:
 		play_wind_audio.emit()
-
-
 	if progress_ratio == 1.0:
 		level_complete.emit()
 

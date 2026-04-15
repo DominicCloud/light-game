@@ -33,7 +33,12 @@
 [ext_resource type="Script" uid="uid://ion1ymxxj8dv" path="res://scripts/UI.gd" id="27_vxglm"]
 [ext_resource type="Texture2D" uid="uid://chdomc00rvws6" path="res://assets/splashscreen.jpg" id="28_2f3dj"]
 [ext_resource type="Script" uid="uid://luqeubkadyal" path="res://scripts/end_sequence.gd" id="32_qkpxi"]
+[ext_resource type="FontFile" uid="uid://dgiwwtfmbxn8q" path="res://assets/fonts/Caveat,Outfit/Caveat/Caveat-VariableFont_wght.ttf" id="33_pibwh"]
+[ext_resource type="FontFile" uid="uid://5rhxerjplnip" path="res://assets/fonts/Caveat,Outfit/Outfit/Outfit-VariableFont_wght.ttf" id="34_c6pm6"]
 [ext_resource type="Script" uid="uid://daoe0jwbv1ud4" path="res://scripts/wind_collider.gd" id="34_dgi5k"]
+[ext_resource type="PackedScene" uid="uid://by366emmuc23t" path="res://assets/models/bouqet.glb" id="35_j8jky"]
+[ext_resource type="PackedScene" uid="uid://dgaigff8ld3hl" path="res://assets/models/grave_frame_2.glb" id="36_fuf3a"]
+[ext_resource type="Texture2D" uid="uid://cw5ltc487sddf" path="res://assets/images_and_sprites/grave_pic.png" id="37_pibwh"]
 
 [sub_resource type="Curve3D" id="Curve3D_pm3ni"]
 _data = {
@@ -135,6 +140,17 @@ size = Vector3(1.121582, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_getpj"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_c6pm6"]
+font = ExtResource("33_pibwh")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_5he1u"]
+font = ExtResource("33_pibwh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5poiv"]
+font = ExtResource("34_c6pm6")
+font_size = 6
+
 [sub_resource type="Animation" id="Animation_5q0nq"]
 length = 0.001
 tracks/0/type = "value"
@@ -164,7 +180,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dgi5k"]
 resource_name = "sq1"
-length = 3.0
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -172,10 +188,10 @@ tracks/0/path = NodePath("Main Camera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0009999999, 2.9666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0009999999, 6),
+"transitions": PackedFloat32Array(1, 2),
 "update": 0,
-"values": [Vector3(9.877446, 0.90063953, 56.686024), Vector3(9.216033, 0.8080926, 56.686024)]
+"values": [Vector3(9.877446, 0.90063953, 56.686024), Vector3(9.126517, 0.2934304, 56.90116)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -184,10 +200,10 @@ tracks/1/path = NodePath("Main Camera:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.0009999999, 6),
+"transitions": PackedFloat32Array(1, 2),
 "update": 0,
-"values": [Vector3(-0.013888817, -2.7483494, -0.002647337)]
+"values": [Vector3(-0.013888819, -3.008159, -0.0026473377), Vector3(-0.013888818, -2.7483494, -0.002647337)]
 }
 
 [sub_resource type="Animation" id="Animation_j8jky"]
@@ -226,7 +242,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5q0nq"]
-size = Vector3(15.667778, 17.106445, 8.809692)
+size = Vector3(15.667778, 17.106445, 5.230713)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wind1"]
 particle_flag_align_y = true
@@ -258,6 +274,7 @@ script = ExtResource("23_y6deb")
 camera = NodePath("../../Main Camera")
 kid = NodePath("Kid")
 end_sequnce = NodePath("../../climax/end_sequence")
+length_in_time = 2
 
 [node name="Kid" parent="AI_boy_path/PathFollow3D" unique_id=84242296 node_paths=PackedStringArray("kid", "umbrella") instance=ExtResource("19_0odxb")]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -294,7 +311,7 @@ stream = ExtResource("27_tel4y")
 volume_db = 4.66
 
 [node name="Main Camera" type="Camera3D" parent="." unique_id=2016982088 node_paths=PackedStringArray("player")]
-transform = Transform3D(0.9785663, 0, 0.20593089, 0, 1.0000001, 0, -0.20593081, 0, 0.97856665, 9.877446, 0.90063953, 56.686024)
+transform = Transform3D(0.97856647, 0, 0.20593084, 0, 1, 0, -0.20593084, 0, 0.97856647, 9.877446, 0.90063953, 56.686024)
 script = ExtResource("23_pm3ni")
 player = NodePath("../umbrella")
 
@@ -316,12 +333,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.132296, 0.8514123, 53.4588
 visible = false
 curve = SubResource("Curve3D_tel4y")
 
-[node name="end_sequence" type="PathFollow3D" parent="climax" unique_id=1461771331 node_paths=PackedStringArray("end_camera", "umbrella", "kid")]
+[node name="end_sequence" type="PathFollow3D" parent="climax" unique_id=1461771331 node_paths=PackedStringArray("end_camera", "umbrella", "kid", "ui")]
 transform = Transform3D(0.42951283, -1.6495129e-05, -0.9030411, 0, 0.9999988, -1.8265557e-05, 0.9030433, 7.845549e-06, 0.4295118, -4.12092, 2.8133392e-05, 0.7559967)
 script = ExtResource("32_qkpxi")
 end_camera = NodePath("Sequence Camera")
 umbrella = NodePath("../../umbrella")
 kid = NodePath("../../AI_boy_path/PathFollow3D/Kid")
+ui = NodePath("../../Control")
 
 [node name="Sequence Camera" type="Camera3D" parent="climax/end_sequence" unique_id=1737804219]
 transform = Transform3D(0.24122271, 0, -0.9704698, 0, 1, 0, 0.9704698, 0, 0.24122271, 0.10573578, 0.3934543, 0.020439148)
@@ -640,7 +658,10 @@ transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 7.699147, 0, 54.258205)
 [node name="Rose22" parent="LevelDesign/Roses" unique_id=302422513 instance=ExtResource("20_82xsv")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 10.110864, 0, 56.64099)
 
-[node name="Control" type="Control" parent="." unique_id=1969222550 node_paths=PackedStringArray("kid", "follow_path")]
+[node name="bouqet" parent="LevelDesign" unique_id=2003039675 instance=ExtResource("35_j8jky")]
+transform = Transform3D(0.065274194, -0.046178102, -0.002619565, 0.027088974, 0.041840784, -0.06257424, 0.037489563, 0.050169025, 0.049775515, 10.037471, 0.07395825, 57.096607)
+
+[node name="Control" type="Control" parent="." unique_id=1969222550 node_paths=PackedStringArray("credits", "kid", "follow_path")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -648,34 +669,108 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_vxglm")
+credits = NodePath("CreditsDisplay")
 kid = NodePath("../AI_boy_path/PathFollow3D/Kid")
 follow_path = NodePath("../AI_boy_path/PathFollow3D")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control" unique_id=1092750887]
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=385919709]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(97.21429, 52.254044)
+color = Color(2.8577633e-08, 0.05079128, 0.06615603, 1)
+
+[node name="CreditsDisplay" type="VBoxContainer" parent="Control" unique_id=808876280]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = -20.0
-offset_right = 37.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 125.0
+offset_bottom = 123.0
 scale = Vector2(8.973532, 8.973532)
 
-[node name="Victory" type="Label" parent="Control/CenterContainer" unique_id=1201318047]
-visible = false
+[node name="hbox1" type="HBoxContainer" parent="Control/CreditsDisplay" unique_id=656910076]
+layout_mode = 2
+alignment = 1
+
+[node name="Credits" type="Label" parent="Control/CreditsDisplay/hbox1" unique_id=1201318047]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 8
-text = "Thanks for 
-  playing!"
-horizontal_alignment = 2
+text = "Credits"
+label_settings = SubResource("LabelSettings_c6pm6")
+horizontal_alignment = 1
+
+[node name="hbox2" type="HBoxContainer" parent="Control/CreditsDisplay" unique_id=1784652795]
+layout_mode = 2
+
+[node name="P1" type="VBoxContainer" parent="Control/CreditsDisplay/hbox2" unique_id=77527678]
+layout_mode = 2
+alignment = 1
+
+[node name="name" type="Label" parent="Control/CreditsDisplay/hbox2/P1" unique_id=1720076080]
+layout_mode = 2
+text = "Alon"
+label_settings = SubResource("LabelSettings_5he1u")
+horizontal_alignment = 1
+
+[node name="role" type="Label" parent="Control/CreditsDisplay/hbox2/P1" unique_id=1222073623]
+layout_mode = 2
+text = "Design, Programming,
+Narrative"
+label_settings = SubResource("LabelSettings_5poiv")
+horizontal_alignment = 1
+
+[node name="P2" type="VBoxContainer" parent="Control/CreditsDisplay/hbox2" unique_id=1046206401]
+layout_mode = 2
+
+[node name="name2" type="Label" parent="Control/CreditsDisplay/hbox2/P2" unique_id=2049380086]
+layout_mode = 2
+text = "Callahan"
+label_settings = SubResource("LabelSettings_5he1u")
+horizontal_alignment = 1
+
+[node name="role2" type="Label" parent="Control/CreditsDisplay/hbox2/P2" unique_id=1317834606]
+layout_mode = 2
+text = "Design, Programming, 
+Audio, Narrative"
+label_settings = SubResource("LabelSettings_5poiv")
+horizontal_alignment = 1
+
+[node name="hbox3" type="HBoxContainer" parent="Control/CreditsDisplay" unique_id=354821626]
+layout_mode = 2
+
+[node name="P3" type="VBoxContainer" parent="Control/CreditsDisplay/hbox3" unique_id=590931005]
+layout_mode = 2
+
+[node name="name3" type="Label" parent="Control/CreditsDisplay/hbox3/P3" unique_id=1973793502]
+layout_mode = 2
+text = "Nakita"
+label_settings = SubResource("LabelSettings_5he1u")
+horizontal_alignment = 1
+
+[node name="role3" type="Label" parent="Control/CreditsDisplay/hbox3/P3" unique_id=1937601563]
+layout_mode = 2
+text = "Art, Environment Design"
+label_settings = SubResource("LabelSettings_5poiv")
+horizontal_alignment = 1
+
+[node name="P4" type="VBoxContainer" parent="Control/CreditsDisplay/hbox3" unique_id=1361457076]
+layout_mode = 2
+
+[node name="name4" type="Label" parent="Control/CreditsDisplay/hbox3/P4" unique_id=1673587698]
+layout_mode = 2
+text = "Keriya"
+label_settings = SubResource("LabelSettings_5he1u")
+horizontal_alignment = 1
+
+[node name="role4" type="Label" parent="Control/CreditsDisplay/hbox3/P4" unique_id=2037477515]
+layout_mode = 2
+text = "3D Art, Audio
+"
+label_settings = SubResource("LabelSettings_5poiv")
+horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1471333709]
 layout_mode = 1
@@ -690,14 +785,6 @@ grow_horizontal = 2
 [node name="healthbar" parent="Control/MarginContainer" unique_id=1133075964 instance=ExtResource("27_2f3dj")]
 layout_mode = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=385919709]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(97.21429, 52.254044)
-color = Color(0.8, 0.9607843, 1, 1)
-
 [node name="TextureRect" type="TextureRect" parent="Control" unique_id=2109598166]
 visible = false
 layout_mode = 0
@@ -710,23 +797,30 @@ texture = ExtResource("28_2f3dj")
 libraries/ = SubResource("AnimationLibrary_kmb1v")
 
 [node name="Wind" type="Area3D" parent="." unique_id=980299330]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.973676, 2.2477312, 0.5668688)
-wind_force_magnitude = 10.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.963271, 2.2477312, 11.841972)
 script = ExtResource("34_dgi5k")
-wind_strength = 25.0
+wind_strength = 20.0
+resistance = 0.65
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wind" unique_id=462396923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8481445, 3.2766724)
 shape = SubResource("BoxShape3D_5q0nq")
 
 [node name="WindParticles" type="GPUParticles3D" parent="Wind" unique_id=1145404666]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8481445, 3.2766724)
-amount = 80
+transform = Transform3D(0.99943155, -0.07766503, 0, 0.033713356, 2.3023787, 0, 0, 0, 1.892674, -6.9047327, 0.17490101, 3.6133194)
+amount = 100
 lifetime = 3.0
 preprocess = 1.5
 randomness = 0.3
 process_material = SubResource("ParticleProcessMaterial_wind1")
 draw_pass_1 = SubResource("QuadMesh_wind1")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1804263614 instance=ExtResource("36_fuf3a")]
+transform = Transform3D(-0.11786961, 0, 0.29700777, 0, 0.31954163, 0, -0.29700777, 0, -0.11786961, 9.214452, 0.040547967, 57.23016)
+
+[node name="Sprite3D" type="Sprite3D" parent="Sketchfab_Scene" unique_id=1381715857]
+transform = Transform3D(0.0005797129, -0.01645126, 0.056167915, -9.220689e-05, 0.056170374, 0.016452922, -0.058527492, -0.00025144126, 0.0005304199, 0.051589966, 0.5771128, 0.004901886)
+texture = ExtResource("37_pibwh")
 
 [connection signal="body_entered" from="deadzone" to="deadzone" method="_on_body_entered"]
 [connection signal="body_entered" from="Wind" to="Wind" method="_on_body_entered"]

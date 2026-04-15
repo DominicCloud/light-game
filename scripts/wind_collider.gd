@@ -38,7 +38,6 @@ func _process(delta: float) -> void:
 		umbrella.velocity += wind_direction.normalized() * opposing_velocity * (1.0 - resistance)
 
 func _on_body_entered(body: UmbrellaPlayerController) -> void:
-	print("umbrella in area")
 	umbrella = body
 
 func _on_body_exited(body: Node3D) -> void:

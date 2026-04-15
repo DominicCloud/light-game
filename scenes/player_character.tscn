@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cqfrv8sujc3lc" path="res://scripts/player_character.gd" id="1_56udc"]
 [ext_resource type="PackedScene" uid="uid://cisit82codlfy" path="res://scenes/umbrella_sprite.tscn" id="2_sprite"]
-[ext_resource type="AudioStream" uid="uid://sjgi52sabtq5" path="res://assets/audio/bittersweet_piano_bg_music.mp3" id="3_kww55"]
 [ext_resource type="AudioStream" uid="uid://xpjtyc65jrgu" path="res://assets/audio/umbrella_closing-trimmed.mp3" id="4_4h0vy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56udc"]
@@ -27,10 +26,6 @@ shape = SubResource("CapsuleShape3D_56udc")
 
 [node name="sprite" parent="." unique_id=861039439 instance=ExtResource("2_sprite")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-
-[node name="game_music" type="AudioStreamPlayer" parent="." unique_id=681062966]
-stream = ExtResource("3_kww55")
-autoplay = true
 
 [node name="umbrella_close_sfx" type="AudioStreamPlayer" parent="." unique_id=1902871158]
 stream = ExtResource("4_4h0vy")

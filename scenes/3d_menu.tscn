@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cdhsuylww5u3h" path="res://modelAssets/Environoment Pack V.1/Textures/Branch_Green.png" id="7_0rh1d"]
 [ext_resource type="Script" uid="uid://b8k1sojtokdnw" path="res://scripts/menu_3d.gd" id="8_3dmnu"]
 [ext_resource type="Texture2D" uid="uid://cwead043odfr8" path="res://assets/icons/start_flower.png" id="9_flwer"]
+[ext_resource type="FontFile" uid="uid://dgiwwtfmbxn8q" path="res://assets/fonts/Caveat,Outfit/Caveat/Caveat-VariableFont_wght.ttf" id="10_tg6si"]
+[ext_resource type="FontFile" uid="uid://5rhxerjplnip" path="res://assets/fonts/Caveat,Outfit/Outfit/Outfit-VariableFont_wght.ttf" id="10_w8nxc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lswn8"]
 albedo_color = Color(0.3254902, 0.6039216, 0.16862746, 1)
@@ -103,6 +105,17 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_apyv3")
+
+[sub_resource type="LabelSettings" id="LabelSettings_qdh3b"]
+font = ExtResource("10_w8nxc")
+font_size = 56
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v7rmb"]
+load_path = "res://.godot/imported/sun_icon.png-b7b7d1d8287952c4e9052c4038b35589.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8nxc"]
+font = ExtResource("10_tg6si")
+font_size = 200
 
 [node name="3D menu" type="Node" unique_id=179861639]
 script = ExtResource("8_3dmnu")
@@ -225,4 +238,23 @@ theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
 theme_override_font_sizes/font_size = 66
 text = "press space 
 to start"
+label_settings = SubResource("LabelSettings_qdh3b")
 vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=632765341]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 279.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="icon" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=1338338806]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_v7rmb")
+
+[node name="Title" type="Label" parent="CanvasLayer/Control/HBoxContainer" unique_id=881495452]
+layout_mode = 2
+text = "Sunburnt"
+label_settings = SubResource("LabelSettings_w8nxc")

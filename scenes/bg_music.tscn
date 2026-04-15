@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://rlo6jukxfl0x"]
+
+[ext_resource type="AudioStream" uid="uid://bjswc8sk5dh0o" path="res://assets/audio/sad_piano.mp3" id="1_f6gl3"]
+
+[node name="bg_music" type="AudioStreamPlayer" unique_id=1317961146]
+stream = ExtResource("1_f6gl3")
+autoplay = true

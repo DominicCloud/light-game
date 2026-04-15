@@ -8,12 +8,20 @@
 
 config_version=5
 
+[addons]
+
+universal_fade/patterns_directory="res://addons/UniversalFade/Patterns"
+
 [application]
 
 config/name="Light Game"
-run/main_scene="uid://cy05jpg3578c5"
+run/main_scene="uid://crl85pkep2hs0"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+bg_music="*uid://rlo6jukxfl0x"
 
 [display]
 
