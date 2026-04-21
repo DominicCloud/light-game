@@ -29,6 +29,7 @@ extends Node3D
 @export var recovery_rate: float = 4.0
 ## If true, health can recover in shade. If false, only sunburn accumulates.
 @export var allow_recovery: bool = true
+@export var is_invincible: bool = false
 
 # ── Public State (read from other scripts) ───────────────────────────────────
 
@@ -61,6 +62,10 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not kid:
+		return
+	
+	# Do NOT calculate exposure OR update health
+	if is_invincible:
 		return
 
 	exposure = _calculate_exposure()
@@ -100,7 +105,12 @@ func _update_health(delta: float) -> void:
 	health = clampf(health, 0.0, max_health)
 	if health <= 0.0:
 		kid_got_sunburnt.emit()
-		queue_free()
+		queue_free() # Play death/sunburnt animation
+		#await get_tree().create_timer(2.0).timeout
+		Fade.crossfade_prepare(1.0, "Diamond")
+		get_tree().reload_current_scene()
+
+		Fade.crossfade_execute()
 
 
 ## Fires transition signals when the kid crosses between shaded/exposed states.

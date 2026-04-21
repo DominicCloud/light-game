@@ -37,7 +37,6 @@ func play_sequence() -> void:
 	await animation_player.animation_finished
 	
 	# 6. Fade out again at the end (important for clean exit)
-	#await Fade.fade_out().finished
 	Fade.crossfade_prepare(2.0)
 	Fade.crossfade_execute()
 	#await Fade.fade_in().finished

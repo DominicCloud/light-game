@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://64rjjl8pnuju"]
+
+[ext_resource type="PackedScene" uid="uid://bglcvvr3cuuy5" path="res://scenes/player_character.tscn" id="1_tr4y6"]
+[ext_resource type="Script" uid="uid://c1dvxx2ifwl1i" path="res://scripts/camera_3d.gd" id="2_jelwi"]
+[ext_resource type="PackedScene" uid="uid://c5xpiqoqui4mw" path="res://scenes/deadzone.tscn" id="3_urufc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ptyin"]
+sky_top_color = Color(0.563529, 0.42571038, 0.12231634, 1)
+
+[sub_resource type="Sky" id="Sky_tr4y6"]
+sky_material = SubResource("ProceduralSkyMaterial_ptyin")
+
+[sub_resource type="Environment" id="Environment_jelwi"]
+background_mode = 2
+sky = SubResource("Sky_tr4y6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urufc"]
+albedo_color = Color(0.58129305, 0.67091894, 0.69474363, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf4vk"]
+material = SubResource("StandardMaterial3D_urufc")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tbeqj"]
+size = Vector3(1, 23.813965, 1)
+
+[node name="TutorialScene" type="Node3D" unique_id=589554746]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=351937143]
+environment = SubResource("Environment_jelwi")
+
+[node name="PlayerUmbrella" parent="." unique_id=812141171 node_paths=PackedStringArray("camera") instance=ExtResource("1_tr4y6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+camera = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=568647964 node_paths=PackedStringArray("player")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.0627166, -3.1849775)
+script = ExtResource("2_jelwi")
+player = NodePath("../PlayerUmbrella")
+
+[node name="deadzone" parent="." unique_id=122385942 node_paths=PackedStringArray("camera") instance=ExtResource("3_urufc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.6073098, 0)
+camera = NodePath("../Camera3D")
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=2068139239]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 3.5676079, 0, 23.132244)
+collision_mask = 5
+
+[node name="GroundPlane" type="MeshInstance3D" parent="Ground" unique_id=1844210762]
+transform = Transform3D(18.997673, 0, 0, 0, 0.08110212, 0, 0, 0, 63.156284, 0, 0, 0)
+mesh = SubResource("BoxMesh_yf4vk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=500873782]
+transform = Transform3D(18.997673, 0, 0, 0, 0.08110183, 0, 0, 0, 63.156136, 0, -0.9251303, 0)
+shape = SubResource("BoxShape3D_tbeqj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=32447237]
+transform = Transform3D(1, 0, 0, 0, 0.9749013, 0.22263762, 0, -0.22263762, 0.9749013, 0, 7.9987087, 0)
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1843930575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4420385, 2.0517883, 2.65043)
+billboard = 1
+text = "WASD to move"

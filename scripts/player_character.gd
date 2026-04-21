@@ -10,7 +10,7 @@ var is_open: bool = true
 @export var camera: Camera3D
 
 ## Speed at which the canopy opens/closes (0→1 range per second).
-@export var canopy_speed: float = 1.0
+@export var canopy_speed: float = 4
 
 # Movement
 @export var move_speed: float = 5.0

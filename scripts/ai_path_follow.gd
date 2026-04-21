@@ -16,8 +16,9 @@ signal level_successful
 func _ready() -> void:
 	level_complete.connect(_on_level_complete)
 	play_wind_audio.connect(_play_audio)
-	
+
 	await get_tree().create_timer(2.0).timeout
+	kid.is_invincible = false
 	create_tween().tween_property(self, "progress_ratio", 1, length_in_time)
 	var animation: AnimationPlayer = kid.get_node("AnimationPlayer")
 	# play walk animation
@@ -29,8 +30,6 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if progress_ratio > 0.05 and progress_ratio < 0.1:
-		play_wind_audio.emit()
 	if progress_ratio == 1.0:
 		level_complete.emit()
 
@@ -48,6 +47,7 @@ func _on_level_complete() -> void:
 
 
 func on_level_successful() -> void:
+	kid.is_invincible = true
 	var animation: AnimationPlayer = kid.get_node("AnimationPlayer")
 	animation.stop()
 	var footsteps_sfx: AudioStreamPlayer3D = kid.get_node("audio")

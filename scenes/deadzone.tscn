@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c5xpiqoqui4mw"]
+
+[ext_resource type="Script" uid="uid://0pxlipro3apo" path="res://scripts/deadzone.gd" id="1_t3cga"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2wyq8"]
+
+[node name="deadzone" type="Area3D" unique_id=122385942 node_paths=PackedStringArray("camera")]
+script = ExtResource("1_t3cga")
+camera = NodePath("")
+
+[node name="Deadzone" type="CollisionShape3D" parent="." unique_id=1237517682]
+shape = SubResource("WorldBoundaryShape3D_2wyq8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
